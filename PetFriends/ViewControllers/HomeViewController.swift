@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import FirebaseFirestore
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -21,11 +22,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         dogModel.getSavedDogData { (savedDogArray) in
             self.dogArray = savedDogArray
-//            for _ in self.dogArray {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-//            }
       
         }
   
@@ -41,9 +40,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
- //       print(dogArray.count)   //Firebaseデータがプリントされない Why?
-  
-        //return dogArray != nil ? (dogArray.count) : 0
+ 
         return dogArray.count
     }
     

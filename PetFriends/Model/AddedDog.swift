@@ -5,7 +5,8 @@
 //  Created by Haruko Okada on 2/25/21.
 //
 import Foundation
-import Firebase
+import FirebaseFirestore
+
 
 struct AddedDogStruct {
     var name: String

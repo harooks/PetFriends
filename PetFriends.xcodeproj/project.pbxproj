@@ -149,8 +149,8 @@
 				F58BF63325E608C8002524DF /* LoginViewController.swift */,
 				F58BF63825E608DB002524DF /* HomeViewController.swift */,
 				F539B00225E6A17400AED4E9 /* RegisterDogViewController.swift */,
-				F547C89625E67FB70034716D /* DogTableViewCell.swift */,
 				F547C89B25E687120034716D /* AddDogViewController.swift */,
+				F547C89625E67FB70034716D /* DogTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

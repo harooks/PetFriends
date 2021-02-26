@@ -18,12 +18,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         
         //モデルから Firebase のデータが入った配列を取得
+
         dogModel.getSavedDogData { (savedDogArray) in
             self.dogArray = savedDogArray
-            print("dogArray: \(self.dogArray)")  //Firebaseデータがプリントされる
-            print("savedDogArray: \(savedDogArray)") //Firebaseデータがプリントされる
-            print(self.dogArray[0].name)
+//            for _ in self.dogArray {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+//            }
+      
         }
+  
     }
     
     override func viewDidLoad() {
@@ -31,18 +36,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        print("eh")
         tableView.dataSource = self
         tableView.delegate = self
+
+      
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(dogArray.count)   //Firebaseデータがプリントされない Why?
-        print(dogArray)
+ //       print(dogArray.count)   //Firebaseデータがプリントされない Why?
+  
+        //return dogArray != nil ? (dogArray.count) : 0
         return dogArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
-        cell?.textLabel?.text = dogArray[indexPath.row].name
+  //      print(dogArray.count)
+        print(dogArray[indexPath.row].name)
+        cell?.textLabel?.text = self.dogArray[indexPath.row].name
         return cell!
+
     }
 
 

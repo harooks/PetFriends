@@ -40,13 +40,13 @@ class DogFirebase {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
+                var savedDogArray = [AddedDog]()
                 for document in querySnapshot!.documents {
                     let data = AddedDog(document: document)
-                    var savedDogArray = [AddedDog]()
                     savedDogArray.append(data)
 //                    print(data.name)
-                    completion(savedDogArray)
                 }
+                completion(savedDogArray)
             }
   
         }

@@ -23,6 +23,8 @@ class AddDogViewController: UIViewController {
     @IBOutlet weak var genderPicker: UIPickerView!
     @IBOutlet weak var othersTextView: UITextView!
     
+ 
+    
     //buttons
     @IBOutlet weak var addDogButton: UIButton!
     @IBOutlet weak var takePhotoButton: UIButton!
@@ -35,6 +37,7 @@ class AddDogViewController: UIViewController {
         genderPicker.delegate = self
         genderPicker.dataSource = self
         keyboaredSetting()
+//        setScrollView()
     }
 
     deinit {
@@ -42,6 +45,21 @@ class AddDogViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
+    
+//    func setScrollView() {
+//        //UIScrollViewのインスタンス作成
+//        let scrollView = UIScrollView()
+//        //scrollViewの大きさを設定。
+//        scrollView.frame = self.view.frame
+//        //スクロール領域の設定
+//        scrollView.contentSize = CGSize(width: self.view.bounds.size.width, height:1000)
+//
+//
+//        //scrollViewをviewのSubViewとして追加
+// //       self.view.sendSubviewToBack(scrollView)
+//        self.view.addSubview(scrollView)
+//
+//    }
     
     @IBAction func takePhotoButtonTapped(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -81,7 +99,7 @@ class AddDogViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
- 
+    
     
  
     
@@ -129,7 +147,6 @@ class AddDogViewController: UIViewController {
             } else {
                 print("put is complete \(downloadMetaData)")
             }
-
         }
         print("i ran")
     }

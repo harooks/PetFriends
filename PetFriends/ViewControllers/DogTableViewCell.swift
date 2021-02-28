@@ -9,6 +9,20 @@ import UIKit
 
 class DogTableViewCell: UITableViewCell {
     
+    var dog: AddedDog? {
+        didSet {
+            nameTextLabel.text = dog?.name
+            let url = URL(string: dog?.imageUrl ?? "")
+            do {
+                let data = try Data(contentsOf: url!)
+                let image = UIImage(data: data)
+                dogImageView.image = image
+                print("success")
+            } catch let err {
+                print("Error : \(err.localizedDescription)")
+            }
+        }
+    }
     
     
     
@@ -20,7 +34,7 @@ class DogTableViewCell: UITableViewCell {
         return iv
     }()
     
-    let nameTextLabel: UILabel = {
+    var nameTextLabel: UILabel = {
         let label = UILabel()
         label.text = "名前"
         label.font = .systemFont(ofSize: 18)
@@ -44,7 +58,7 @@ class DogTableViewCell: UITableViewCell {
             
             nameTextLabel.heightAnchor.constraint(equalToConstant: 20),
             nameTextLabel.leadingAnchor.constraint(equalTo: dogImageView.trailingAnchor, constant: 20),
-//            nameTextLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            nameTextLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             nameTextLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             nameTextLabel.rightAnchor.constraint(equalTo: rightAnchor),
             

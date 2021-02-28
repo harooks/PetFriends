@@ -10,27 +10,28 @@ import FirebaseFirestore
 
 struct AddedDogStruct {
     var name: String
-//    var image: String
     var breed: String
     var gender: Bool
     var bio: String
+//    var imageUrl: String
 }
 
 class AddedDog: NSObject {
-//    var uid: String?
+
     var name: String
-//    var image: String
     var breed: String
     var gender: Bool
     var bio: String
+    var imageUrl: String
     
 
     init(document: QueryDocumentSnapshot) {
        let Dic = document.data()
-        self.name = Dic["name"] as? String ?? ""
+       self.name = Dic["name"] as? String ?? ""
        self.breed = Dic["breed"] as? String ?? ""
-        self.gender = Dic["gender"] as? Bool ?? true
-       self.bio = Dic["String"] as? String ?? ""
+       self.gender = Dic["gender"] as? Bool ?? true
+       self.bio = Dic["bio"] as? String ?? ""
+       self.imageUrl = Dic["imageUrl"] as? String ?? ""
    }
 }
 

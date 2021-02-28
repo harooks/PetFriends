@@ -18,6 +18,8 @@
 		F58BF62F25E608BA002524DF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58BF62E25E608BA002524DF /* SignUpViewController.swift */; };
 		F58BF63425E608C8002524DF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58BF63325E608C8002524DF /* LoginViewController.swift */; };
 		F58BF63925E608DB002524DF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58BF63825E608DB002524DF /* HomeViewController.swift */; };
+		F58C280425EA0910006BD9FE /* Rubik.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F58C280325EA0910006BD9FE /* Rubik.ttf */; };
+		F58C280C25EA30E6006BD9FE /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58C280B25EA30E6006BD9FE /* Design.swift */; };
 		F5C40F5825E4E33600B5D3D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C40F5725E4E33600B5D3D5 /* AppDelegate.swift */; };
 		F5C40F5A25E4E33600B5D3D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C40F5925E4E33600B5D3D5 /* SceneDelegate.swift */; };
 		F5C40F5C25E4E33600B5D3D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C40F5B25E4E33600B5D3D5 /* ViewController.swift */; };
@@ -64,6 +66,8 @@
 		F58BF62E25E608BA002524DF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F58BF63325E608C8002524DF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F58BF63825E608DB002524DF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F58C280325EA0910006BD9FE /* Rubik.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rubik.ttf; sourceTree = "<group>"; };
+		F58C280B25EA30E6006BD9FE /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		F5C40F5425E4E33600B5D3D5 /* PetFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetFriends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5C40F5725E4E33600B5D3D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5C40F5925E4E33600B5D3D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +159,22 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		F58C280225EA08FE006BD9FE /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				F58C280325EA0910006BD9FE /* Rubik.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		F58C281025EA30ED006BD9FE /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				F58C280B25EA30E6006BD9FE /* Design.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
 		F5C40F4B25E4E33600B5D3D5 = {
 			isa = PBXGroup;
 			children = (
@@ -180,7 +200,9 @@
 		F5C40F5625E4E33600B5D3D5 /* PetFriends */ = {
 			isa = PBXGroup;
 			children = (
+				F58C280225EA08FE006BD9FE /* Font */,
 				F58BF63D25E608E3002524DF /* ViewControllers */,
+				F58C281025EA30ED006BD9FE /* Design */,
 				F539B01725E762E400AED4E9 /* Model */,
 				F5C40F5725E4E33600B5D3D5 /* AppDelegate.swift */,
 				F5C40F5925E4E33600B5D3D5 /* SceneDelegate.swift */,
@@ -323,6 +345,7 @@
 				F5C40F6125E4E33700B5D3D5 /* Assets.xcassets in Resources */,
 				F5C40F5F25E4E33600B5D3D5 /* Main.storyboard in Resources */,
 				F5D3187125E604970017064C /* GoogleService-Info.plist in Resources */,
+				F58C280425EA0910006BD9FE /* Rubik.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +482,7 @@
 				F58BF63425E608C8002524DF /* LoginViewController.swift in Sources */,
 				F5C40F5A25E4E33600B5D3D5 /* SceneDelegate.swift in Sources */,
 				F58BF63925E608DB002524DF /* HomeViewController.swift in Sources */,
+				F58C280C25EA30E6006BD9FE /* Design.swift in Sources */,
 				F539B00325E6A17400AED4E9 /* RegisterDogViewController.swift in Sources */,
 				F539B01025E762DC00AED4E9 /* DogFirebase.swift in Sources */,
 			);

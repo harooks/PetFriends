@@ -45,6 +45,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Rubik.ttf</string>
+	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>アプリ内で写真を撮り、保存するため</string>
 	<key>NSPhotoLibraryUsageDescription</key>

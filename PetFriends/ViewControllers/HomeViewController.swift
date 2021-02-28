@@ -35,7 +35,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        print("eh")
         tableView.dataSource = self
         tableView.delegate = self
-
+        tableView.register(DogTableViewCell.self, forCellReuseIdentifier: "Cell")
       
     }
     
@@ -45,11 +45,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
-  //      print(dogArray.count)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! DogTableViewCell
+        print(dogArray.count)
         print(dogArray[indexPath.row].name)
-        cell?.textLabel?.text = self.dogArray[indexPath.row].name
-        return cell!
+   //     cell?.textLabel?.text = self.dogArray[indexPath.row].name
+        return cell
 
     }
 

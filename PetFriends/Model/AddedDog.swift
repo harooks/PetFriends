@@ -16,6 +16,7 @@ struct AddedDogStruct {
 //    var imageUrl: String
 }
 
+
 class AddedDog: NSObject {
 
     var name: String

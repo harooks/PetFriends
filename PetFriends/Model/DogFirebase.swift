@@ -24,7 +24,7 @@ class DogFirebase {
     
 
     
-    
+    //ここで新しいドキュメント作成
     func getDogData(dog: AddedDogStruct?, imageUrl: String) {
         
         db.collection("users").document(uidString).collection("savedDogs").addDocument(data: [
@@ -40,7 +40,6 @@ class DogFirebase {
                 print("Document successfully written!")
             }
         }
-        
     }
     
     func uploadImage(addedDog: AddedDogStruct, view: UIImageView) {
@@ -75,16 +74,19 @@ class DogFirebase {
     }
     
     
-    func getSavedDogData (completion: @escaping ([AddedDog]) -> ()) {
+
+    //Collection の中のドキュメントを全て読み取る
+    func getSavedDogData (completion: @escaping ([DogModel]) -> ()) {
         db.collection("users").document(uidString).collection("savedDogs").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                var savedDogArray = [AddedDog]()
+                var savedDogArray = [DogModel]()
                 for document in querySnapshot!.documents {
-                    let data = AddedDog(document: document)
-                    savedDogArray.append(data)
-//                    print(data.name)
+                    let dic = document.data()
+                    let dog = DogModel.init(dic: dic)
+                    savedDogArray.append(dog)
+                    print("data name is: \(dog.name)")
                 }
                 completion(savedDogArray)
             }

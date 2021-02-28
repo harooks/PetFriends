@@ -9,7 +9,7 @@ import UIKit
 
 class DogTableViewCell: UITableViewCell {
     
-    var dog: AddedDog? {
+    var dog: DogModel? {
         didSet {
             nameTextLabel.text = dog?.name
             let url = URL(string: dog?.imageUrl ?? "")

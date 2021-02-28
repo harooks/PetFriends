@@ -42,6 +42,9 @@ class AddDogViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dogImageView.image = UIImage(named: "defaultDog")
+        dogImageView.isHidden = true
+
         keyboaredSetting()
         setupScrollView()
         setImageView()
@@ -294,7 +297,7 @@ class AddDogViewController: UIViewController, UITextViewDelegate, UITextFieldDel
        }
     
  
-    
+   
     @objc func saveData(_ sender: UIButton) {
         guard let name = nameTextField.text, let otherInfo = othersTextView.text, let breed = breedTextField.text else { return }
 
@@ -304,7 +307,7 @@ class AddDogViewController: UIViewController, UITextViewDelegate, UITextFieldDel
         
         var dogModel = DogFirebase()
         
-      
+       
         
         dogFirebase.uploadImage(addedDog: newDog, view: dogImageView)
         
@@ -333,6 +336,7 @@ extension AddDogViewController: UIImagePickerControllerDelegate, UINavigationCon
 
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             dogImageView.image = info[.editedImage] as? UIImage
+            dogImageView.isHidden = false
             dismiss(animated: true, completion: nil)
 
         }

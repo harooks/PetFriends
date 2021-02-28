@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var dogArray:[AddedDog] = []
+    var dogArray:[DogModel] = []
     var dogModel = DogFirebase()
     
     @IBOutlet weak var tableView: UITableView!
@@ -22,10 +22,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         dogModel.getSavedDogData { (savedDogArray) in
             self.dogArray = savedDogArray
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                print("asdf count is \(self.dogArray.count)")
             }
-      
         }
   
     }
@@ -44,16 +45,33 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return dogArray.count
     }
     
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! DogTableViewCell
-        print(dogArray.count)
-        print(dogArray[indexPath.row].name)
-   //     cell?.textLabel?.text = self.dogArray[indexPath.row].name
+        print("Count is: \(dogArray.count)")
+        print("Array Name is \(dogArray[indexPath.row].name)")
+  //      cell.textLabel?.text = self.dogArray[indexPath.row].name
+        cell.nameTextLabel.text = self.dogArray[indexPath.row].name
+  
+        
+        let url = URL(string: self.dogArray[indexPath.row].imageUrl )
+        do {
+            let data = try Data(contentsOf: url!)
+            let image = UIImage(data: data)
+            cell.dogImageView.image = image
+            print("success")
+        } catch let err {
+            print("Error : \(err.localizedDescription)")
+        }
+        
         return cell
 
     }
-
-
 }
 
 

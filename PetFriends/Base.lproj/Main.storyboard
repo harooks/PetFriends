@@ -176,9 +176,91 @@
                     <view key="view" contentMode="scaleToFill" id="7iK-P0-zOt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9jK-hn-EaG">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="398"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wty-97-FBk">
+                                        <rect key="frame" x="80" y="72" width="254" height="254"/>
+                                        <color key="backgroundColor" red="0.77581477889999995" green="0.96848052740000001" blue="0.32252279119999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="W2c-O9-85x">
+                                        <rect key="frame" x="80" y="346" width="254" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngR-Gm-iPb">
+                                                <rect key="frame" x="0.0" y="0.0" width="127" height="30"/>
+                                                <state key="normal" title="Camera"/>
+                                                <connections>
+                                                    <action selector="openCamera:" destination="rTB-Tb-H3g" eventType="touchUpInside" id="uAO-5P-Mlw"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRj-Dr-UeP">
+                                                <rect key="frame" x="127" y="0.0" width="127" height="30"/>
+                                                <state key="normal" title="Album"/>
+                                                <connections>
+                                                    <action selector="openAlbum:" destination="rTB-Tb-H3g" eventType="touchUpInside" id="Fcc-dD-Ixd"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruQ-GQ-3YZ">
+                                        <rect key="frame" x="30" y="30" width="48" height="30"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelButtonTapped:" destination="rTB-Tb-H3g" eventType="touchUpInside" id="FLP-oo-Cd4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zoi-Ez-Ldc">
+                                        <rect key="frame" x="350" y="30" width="34" height="30"/>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveButtonTapped:" destination="rTB-Tb-H3g" eventType="touchUpInside" id="ef6-Ps-B4y"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Wty-97-FBk" firstAttribute="centerY" secondItem="9jK-hn-EaG" secondAttribute="centerY" id="5dZ-dJ-1x7"/>
+                                    <constraint firstItem="W2c-O9-85x" firstAttribute="top" secondItem="Wty-97-FBk" secondAttribute="bottom" constant="20" id="Av0-8C-YaP"/>
+                                    <constraint firstItem="Zoi-Ez-Ldc" firstAttribute="top" secondItem="9jK-hn-EaG" secondAttribute="top" constant="30" id="BAo-nb-8e9"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zoi-Ez-Ldc" secondAttribute="trailing" constant="30" id="CI4-hj-XtA"/>
+                                    <constraint firstItem="W2c-O9-85x" firstAttribute="leading" secondItem="9jK-hn-EaG" secondAttribute="leading" constant="80" id="GC7-ue-TuR"/>
+                                    <constraint firstItem="Wty-97-FBk" firstAttribute="leading" secondItem="9jK-hn-EaG" secondAttribute="leading" constant="80" id="WWJ-LH-oO4"/>
+                                    <constraint firstItem="ruQ-GQ-3YZ" firstAttribute="leading" secondItem="9jK-hn-EaG" secondAttribute="leading" constant="30" id="aRj-TO-Aql"/>
+                                    <constraint firstItem="ruQ-GQ-3YZ" firstAttribute="top" secondItem="9jK-hn-EaG" secondAttribute="top" constant="30" id="hdW-Fu-k4P"/>
+                                    <constraint firstItem="Wty-97-FBk" firstAttribute="top" secondItem="9jK-hn-EaG" secondAttribute="top" constant="72" id="mdG-JN-MDZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="W2c-O9-85x" secondAttribute="trailing" constant="80" id="sCI-L6-rMe"/>
+                                    <constraint firstItem="Wty-97-FBk" firstAttribute="centerX" secondItem="9jK-hn-EaG" secondAttribute="centerX" id="zSH-A9-hXs"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XDW-Bp-HMQ">
+                                <rect key="frame" x="0.0" y="398" width="414" height="415"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="S4a-ki-H3S"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="S4a-ki-H3S" firstAttribute="bottom" secondItem="XDW-Bp-HMQ" secondAttribute="bottom" id="1RP-Ps-Gms"/>
+                            <constraint firstItem="9jK-hn-EaG" firstAttribute="leading" secondItem="S4a-ki-H3S" secondAttribute="leading" id="Chj-TX-SHb"/>
+                            <constraint firstItem="9jK-hn-EaG" firstAttribute="top" secondItem="7iK-P0-zOt" secondAttribute="top" id="E2u-tU-Nd7"/>
+                            <constraint firstItem="XDW-Bp-HMQ" firstAttribute="top" secondItem="9jK-hn-EaG" secondAttribute="bottom" id="LmO-iX-aS8"/>
+                            <constraint firstItem="XDW-Bp-HMQ" firstAttribute="leading" secondItem="9jK-hn-EaG" secondAttribute="leading" id="RTr-qn-1wa"/>
+                            <constraint firstItem="S4a-ki-H3S" firstAttribute="trailing" secondItem="XDW-Bp-HMQ" secondAttribute="trailing" id="VIc-Gk-Qy6"/>
+                            <constraint firstItem="9jK-hn-EaG" firstAttribute="trailing" secondItem="S4a-ki-H3S" secondAttribute="trailing" id="Ytd-S3-4dR"/>
+                            <constraint firstItem="XDW-Bp-HMQ" firstAttribute="top" secondItem="S4a-ki-H3S" secondAttribute="top" constant="354" id="fdO-Nv-0FI"/>
+                            <constraint firstItem="XDW-Bp-HMQ" firstAttribute="leading" secondItem="S4a-ki-H3S" secondAttribute="leading" id="gD7-Al-3fF"/>
+                            <constraint firstItem="XDW-Bp-HMQ" firstAttribute="trailing" secondItem="9jK-hn-EaG" secondAttribute="trailing" id="gcZ-lh-GRF"/>
+                        </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="albumButton" destination="TRj-Dr-UeP" id="yLs-II-DkQ"/>
+                        <outlet property="cameraButton" destination="ngR-Gm-iPb" id="2Km-Qw-5vY"/>
+                        <outlet property="dogImageView" destination="Wty-97-FBk" id="0wZ-bR-HfM"/>
+                        <outlet property="table" destination="XDW-Bp-HMQ" id="YVN-zH-MY5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Y4-gb-LzT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

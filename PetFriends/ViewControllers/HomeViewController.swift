@@ -23,10 +23,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         dogModel.getSavedDogData { (savedDogArray) in
             self.dogArray = savedDogArray
             
-            DispatchQueue.main.async {
+  //          DispatchQueue.main.async {
                 self.tableView.reloadData()
-                print("asdf count is \(self.dogArray.count)")
-            }
+//                print("asdf count is \(self.dogArray.count)")
+ //           }
+            
         }
   
     }
@@ -53,9 +54,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! DogTableViewCell
-        print("Count is: \(dogArray.count)")
-        print("Array Name is \(dogArray[indexPath.row].name)")
-  //      cell.textLabel?.text = self.dogArray[indexPath.row].name
+
         cell.nameTextLabel.text = self.dogArray[indexPath.row].name
   
         

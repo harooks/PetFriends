@@ -9,8 +9,7 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import FirebaseFirestore
-
-
+import FirebaseStorage
 
 
 class DogFirebase {
@@ -90,7 +89,6 @@ class DogFirebase {
                 }
                 completion(savedDogArray)
             }
-  
         }
     }
     

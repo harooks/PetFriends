@@ -19,7 +19,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         
         //モデルから Firebase のデータが入った配列を取得
-
         dogModel.getSavedDogData { (savedDogArray) in
             self.dogArray = savedDogArray
             
@@ -34,7 +33,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("eh")
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(DogTableViewCell.self, forCellReuseIdentifier: "Cell")

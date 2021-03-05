@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func skipLogin() {
          let storyboard = UIStoryboard(name: "Main", bundle: nil)
    //      let homeViewController = storyboard.instantiateViewController(identifier: "HomeVC")
-        let tabBarController = storyboard.instantiateViewController(identifier: "Tab")
+        let tabBarController = storyboard.instantiateViewController(identifier: "navVC")
          window?.rootViewController = tabBarController
          window?.makeKeyAndVisible()
      }

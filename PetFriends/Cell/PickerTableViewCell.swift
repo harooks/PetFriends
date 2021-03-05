@@ -8,14 +8,16 @@
 import UIKit
 
 protocol InputPickerDelegate {
-
-    func getGenderBool(cell: PickerTableViewCell, value: Bool)
+    func pickerView(_ pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+//    func getGenderBool(cell: PickerTableViewCell, value: Bool)
 }
 
 class PickerTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
     
 
     @IBOutlet weak var genderPicker: UIPickerView!
+    var genderChoiceArray = [String]()
     
     static let identifier = "pickerCell"
     
@@ -45,26 +47,36 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDa
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let genderChoiceArray = ["オス", "メス"]
+        
+ //       self.delegate.pickerView(pickerView, titleForRow: row, forComponent: 0)
+        genderChoiceArray = ["オス", "メス"]
         return genderChoiceArray[row]
     }
+
     
     var delegate: InputPickerDelegate! = nil
-    var genderBool = Bool()
+//    var genderBool = Bool()
     
     
-    func getGenderBool(_ pickerView: UIPickerView) {
-        
-        self.delegate.getGenderBool(cell: self, value: genderBool)
-        
-        
-        let selectedValue = genderPicker.selectedRow(inComponent: 0)
-        if selectedValue == 0 {
-            genderBool = true
-        } else {
-            genderBool = false
-        }
- //       return genderBool
+//    func getGenderBool(_ pickerView: UIPickerView) {
+//
+////self.delegate.getGenderBool(cell: self, value: genderBool)
+//
+//
+//        let selectedValue = genderPicker.selectedRow(inComponent: 0)
+//        if selectedValue == 0 {
+//            genderBool = true
+//        } else {
+//            genderBool = false
+//        }
+//
+//        print("selectedValue of gender is: \(selectedValue)")
+// //       return genderBool
+//
+//    }
+    
+    func pickerView(_ pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
+        self.delegate.pickerView(pickerView, didSelectRow: row, inComponent: 0)
 
     }
     

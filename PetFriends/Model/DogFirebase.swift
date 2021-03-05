@@ -34,6 +34,7 @@ class DogFirebase {
             "gender": dog?.gender,
             "bio": dog?.bio,
             "imageUrl": imageUrl,
+            "created": Timestamp(date: Date())
         ] as [String : Any]
         
         ref.document(id).setData(someData, merge: true)
@@ -122,7 +123,7 @@ class DogFirebase {
                     "breed": breed,
                     "gender": gender,
                     "bio": bio,
-                    "imageUrl": urlString
+                    "imageUrl": urlString,
                 ] as [String : Any]
                 
                 ref.document(id).updateData(someData)
@@ -136,7 +137,7 @@ class DogFirebase {
     
     func getSavedDogData (completion: @escaping ([DogModel]) -> ()) {
         var savedDogArray = [DogModel]()
-        db.collection("users").document(uidString).collection("savedDogs").getDocuments() { (querySnapshot, err) in
+        db.collection("users").document(uidString).collection("savedDogs").order(by: "created").getDocuments { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -147,6 +148,16 @@ class DogFirebase {
                     print("data name is: \(dog.name)")
                     completion(savedDogArray)
                 }
+            }
+        }
+    }
+    
+    func deleteDocument(documentId: String) {
+        db.collection("users").document(uidString).collection("savedDogs").document(documentId).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
             }
         }
     }

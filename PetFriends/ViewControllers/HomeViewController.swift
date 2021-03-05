@@ -23,6 +23,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         dogModel.getSavedDogData { (savedDogArray) in
             self.dogArray = savedDogArray
+            self.dogArray.reverse()
             self.tableView.reloadData()
         }
 
@@ -74,6 +75,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
+
+    //スワイプしたセルを削除　※arrayNameは変数名に変更してください
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            dogArray.remove(at: indexPath.row)
+            let documentId = dogArray[indexPath.row].id
+            dogModel.deleteDocument(documentId: documentId)
+            tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // セルの選択を解除
@@ -82,21 +98,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        let editVC = EditDogViewController()
         let editVC = storyboard?.instantiateViewController(identifier: "EditVC") as! EditDogViewController
         
-        //show image in edit VC
-//        let url = URL(string: self.dogArray[indexPath.row].imageUrl )
-//        do {
-//            let data = try Data(contentsOf: url!)
-//            let image = UIImage(data: data)
-//            editVC.dogImageView.image = image
-//            print("success")
-//        } catch let err {
-//            print("Error : \(err.localizedDescription)")
-//        }
-        
-        //show name and other texts
         editVC.newName = dogArray[indexPath.row].name
         editVC.newBreed = dogArray[indexPath.row].breed
         editVC.newOther = dogArray[indexPath.row].bio
+        print("bio saved is: \(editVC.newOther)")
         editVC.newGender = dogArray[indexPath.row].gender
         editVC.documentId = dogArray[indexPath.row].id
         
@@ -110,6 +115,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 //        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
 }
+    
 
 
 }

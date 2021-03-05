@@ -71,19 +71,7 @@ class AddDogViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    @IBAction func saveButtonTapped(_ sender: Any) {
-        
-//        let newDog = AddedDogStruct(name: newName, breed: newBreed, gender: newGender, bio: newOther)
-//
-//        let dogFirebase = DogFirebase()
-//        dogFirebase.uploadImage(addedDog: newDog, view: dogImageView)
-//
-//        print("name is\(newName)")
-//        print("breed is \(newBreed)")
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//            self.dismiss(animated: true, completion: nil)
-//        }
-    }
+
 }
 
 //===========================================================
@@ -127,6 +115,23 @@ extension AddDogViewController: UIImagePickerControllerDelegate, UINavigationCon
 
 extension AddDogViewController: UITableViewDelegate, UITableViewDataSource, InputTextFieldCellDelegate, InputTextViewCellDelegate, InputPickerDelegate {
     
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        let genderChoiceArray = ["オス", "メス"]
+//        return genderChoiceArray[row]
+//    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
+        let selectedValue = row
+        print("selected value from picker is: \(selectedValue)")
+        if selectedValue == 0 {
+            newGender = false //オス
+        } else {
+            newGender = true //メス
+        }
+        print("selected value of newGender is: \(newGender)");
+    }
+    
     
     func getGenderBool(cell: PickerTableViewCell, value: Bool) {
         newGender = value
@@ -152,6 +157,7 @@ extension AddDogViewController: UITableViewDelegate, UITableViewDataSource, Inpu
         print("new breed value: \(newBreed)")
     }
     
+    
 
 
 func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -159,7 +165,7 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
     if indexPath.row < 2 {
         return 40
     } else if indexPath.row == 2 {
-        return 50
+        return 80
     } else if indexPath.row == 3 {
         return 120
     } else {

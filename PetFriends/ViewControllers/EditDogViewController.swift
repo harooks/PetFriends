@@ -45,9 +45,16 @@ class EditDogViewController: UIViewController {
         table.register(ButtonCell.nib(), forCellReuseIdentifier: ButtonCell.identifier)
         table.delegate = self
         table.dataSource = self
-        
+        keyboaredSetting()
         setSwipeBack()
     }
+    
+    deinit {
+           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+       }
+    
     
     func setSwipeBack() {
         let target = self.navigationController?.value(forKey: "_cachedInteractionController")
@@ -90,13 +97,45 @@ class EditDogViewController: UIViewController {
 
 }
 
+extension EditDogViewController {
+    //keyboard setting
+    
+ 
+    func keyboaredSetting() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil);
+    }
+
+    @objc func keyboardWillChange(notification: Notification) {
+
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else{
+            return
+        }
+
+        if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
+            view.frame.origin.y = -keyboardRect.height
+        } else {
+            view.frame.origin.y = 0
+        }
+    }
+
+}
+
 extension EditDogViewController: UITableViewDelegate, UITableViewDataSource, InputTextFieldCellDelegate, InputTextViewCellDelegate, InputPickerDelegate {
     
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        let genderChoiceArray = ["オス", "メス"]
+//        return genderChoiceArray[row]
+//    }
     
-    func getGenderBool(cell: PickerTableViewCell, value: Bool) {
-        newGender = value
-        print("gender bool is \(newGender)")
+    
+    func pickerView(_ pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
+        let selectedValue = row
+        print("selected value from picker is: \(selectedValue)");
+        newGender = (selectedValue != 0)
     }
+    
     
     func textViewDidEndEditing(cell: TextViewTableViewCell, value: String) {
    //     let row = 3
@@ -124,7 +163,7 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
     if indexPath.row < 2 {
         return 40
     } else if indexPath.row == 2 {
-        return 50
+        return 80
     } else if indexPath.row == 3 {
         return 120
     } else {
@@ -164,6 +203,14 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         let pickerCell = tableView.dequeueReusableCell(withIdentifier: PickerTableViewCell.identifier) as! PickerTableViewCell
  //       pickerCell.genderPicker.
         pickerCell.delegate = self
+        var selectedRow:Int = 0
+        if newGender == true {
+            selectedRow = 1
+        } else {
+            selectedRow = 0
+        }
+        pickerCell.genderPicker.selectRow(selectedRow, inComponent: 0, animated: false)
+        
         return pickerCell
     } else if indexPath.row == 3 {
         let textViewCell = tableView.dequeueReusableCell(withIdentifier: TextViewTableViewCell.identifier) as! TextViewTableViewCell

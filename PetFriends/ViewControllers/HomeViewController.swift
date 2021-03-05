@@ -11,17 +11,22 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     var dogArray:[DogModel] = []
-    var dogModel = DogFirebase()
+    var filteredDogArray:[DogModel] = []
+    var dogFirebase = DogFirebase()
+    var isFiltering:Bool = false
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     @IBOutlet weak var tableView: UITableView!
   
     override func viewWillAppear(_ animated: Bool) {
         //モデルから Firebase のデータが入った配列を取得
         
-        dogModel.getSavedDogData { (savedDogArray) in
+        dogFirebase.getSavedDogData { (savedDogArray) in
             self.dogArray = savedDogArray
             self.dogArray.reverse()
             self.tableView.reloadData()
@@ -31,22 +36,58 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         
-//        super.viewDidLoad()
+        super.viewDidLoad()
       self.navigationController?.isNavigationBarHidden = true
         tableView.dataSource = self
         tableView.delegate = self
+        searchBar.delegate = self
 //        tableView.register(DogTableViewCell.self, forCellReuseIdentifier: "Cell")
 //        DispatchQueue.main.async {
             self.tableView.reloadData()
 //        }
     }
     
+
+ //Search bar realted functions---------
+    
+    
+    
+
+     //  検索バーに入力があったら呼ばれる
+     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        filteredDogArray = dogArray
+        isFiltering = true
+        filteredDogArray = []
+        
+        if searchText == "" {
+            filteredDogArray = dogArray
+        } else {
+            for dog in dogArray {
+                if dog.name.contains(searchText) {
+                    filteredDogArray.append(dog)
+                    print("filtered dogs name isssss \(dog.name)")
+                }
+            }
+        }
+        
+        tableView.reloadData()
+        print("filtered array isssss \(filteredDogArray)")
+
+     }
+    
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        isFiltering = true
+//    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
  
   //      return dogArray.count
-        print("count of Array :\(dogArray.count)")
-        return dogArray.count
+        if isFiltering {
+              return filteredDogArray.count
+          } else {
+              return dogArray.count
+          }
     }
     
 
@@ -58,10 +99,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! DogTableViewCell
 
-        print("names in array is: \(dogArray[indexPath.row].name)")
+        if isFiltering {
+            cell.nameLabel.text = self.filteredDogArray[indexPath.row].name
+            let url = URL(string: self.filteredDogArray[indexPath.row].imageUrl )
+            do {
+                let data = try Data(contentsOf: url!)
+                let image = UIImage(data: data)
+                cell.dogImageView.image = image
+                print("success")
+            } catch let err {
+                print("Error : \(err.localizedDescription)")
+            }
+            
+        } else {
         cell.nameLabel.text = self.dogArray[indexPath.row].name
-
-
         let url = URL(string: self.dogArray[indexPath.row].imageUrl )
         do {
             let data = try Data(contentsOf: url!)
@@ -71,6 +122,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } catch let err {
             print("Error : \(err.localizedDescription)")
         }
+        }
+        
         
         return cell
     }
@@ -85,7 +138,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if editingStyle == UITableViewCell.EditingStyle.delete {
             dogArray.remove(at: indexPath.row)
             let documentId = dogArray[indexPath.row].id
-            dogModel.deleteDocument(documentId: documentId)
+            dogFirebase.deleteDocument(documentId: documentId)
             tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
         }
     }

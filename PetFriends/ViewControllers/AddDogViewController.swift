@@ -14,23 +14,48 @@ class AddDogViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var albumButton: UIButton!
     
+    
+    @IBOutlet weak var upperView: UIView!
+    
     var newName = String()
     var newBreed = String()
     var newOther = String()
     var newGender = Bool()
+    var newFav = Bool()
     
     var textFieldArray = [String]()
     
     
     override func viewDidLoad() {
+        dogImageView.layer.cornerRadius = 20
+        dogImageView.clipsToBounds = true
         table.register(UserInputCell.nib(), forCellReuseIdentifier: UserInputCell.identifier)
         table.register(TextViewTableViewCell.nib(), forCellReuseIdentifier: TextViewTableViewCell.identifier)
         table.register(PickerTableViewCell.nib(), forCellReuseIdentifier: PickerTableViewCell.identifier)
+        table.register(FavouriteTableViewCell.nib(), forCellReuseIdentifier: FavouriteTableViewCell.identifier)
         table.register(ButtonCell.nib(), forCellReuseIdentifier: ButtonCell.identifier)
         table.delegate = self
         table.dataSource = self
+        
+        //panジェスチャーのインスタンスを作成する
+//        let gesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
+
+        //ジェスチャーを追加する
+//        self.upperView.addGestureRecognizer(gesture)
         keyboaredSetting()
     }
+    
+    //UpperView を動かしたい
+//    @objc func panGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+//        //移動量を取得する
+//        let move = gestureRecognizer.translation(in: self.view)
+//
+//        //y軸の移動量をviewの高さに加える
+//        self.upperView.frame.size.height += move.y
+//
+//        //移動量をリセットする
+//        gestureRecognizer.setTranslation(CGPoint.zero, in: self.view)
+//    }
     
     deinit {
            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -113,7 +138,17 @@ extension AddDogViewController: UIImagePickerControllerDelegate, UINavigationCon
 
 }
 
-extension AddDogViewController: UITableViewDelegate, UITableViewDataSource, InputTextFieldCellDelegate, InputTextViewCellDelegate, InputPickerDelegate {
+extension AddDogViewController: UITableViewDelegate, UITableViewDataSource, InputTextFieldCellDelegate, InputTextViewCellDelegate, InputPickerDelegate  {
+    
+//    func switchChanged(_ sender: UISwitch) {
+//        if sender.isOn {
+//        newFav = true
+//        } else {
+//            newFav = false
+//        }
+//        print("switch value is \(newFav)")
+//    }
+    
     
 //    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 //        let genderChoiceArray = ["オス", "メス"]
@@ -175,7 +210,7 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
 }
 
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    5
+    6
 }
 
     
@@ -208,6 +243,11 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         textViewCell.textView.tag = indexPath.row
         textViewCell.delegate = self
         return textViewCell
+    } else if indexPath.row == 4 {
+        let switchCell = tableView.dequeueReusableCell(withIdentifier: FavouriteTableViewCell.identifier) as! FavouriteTableViewCell
+        newFav = switchCell.isFavourite
+        print("switch value is \(switchCell.isFavourite)")
+        return switchCell
     } else {
         let btnCell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier) as! ButtonCell
         return btnCell
@@ -217,18 +257,18 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 4 {
+        if indexPath.row == 5 {
             let dogFirebase = DogFirebase()
  
-            let newDog = AddedDogStruct(name: newName, breed: newBreed, gender: newGender, bio: newOther)
+            let newDog = AddedDogStruct(name: newName, breed: newBreed, gender: newGender, fav: newFav, bio: newOther)
             
             
             dogFirebase.uploadImage(addedDog: newDog, view: dogImageView)
             
             print("name is\(newName)")
             print("breed is \(newBreed)")
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { // ここ時間じゃなくす
+            print("switch value is \(newFav)")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // ここ時間じゃなくす
 //                print("id is \(dogFirebase.id)") //works
                 self.dismiss(animated: true, completion: nil)
             }

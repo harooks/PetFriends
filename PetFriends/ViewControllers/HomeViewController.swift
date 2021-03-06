@@ -41,6 +41,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
+        
 //        tableView.register(DogTableViewCell.self, forCellReuseIdentifier: "Cell")
 //        DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -63,7 +64,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             filteredDogArray = dogArray
         } else {
             for dog in dogArray {
-                if dog.name.contains(searchText) {
+                if dog.name.lowercased().contains(searchText.lowercased()) {
                     filteredDogArray.append(dog)
                     print("filtered dogs name isssss \(dog.name)")
                 }
@@ -71,13 +72,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         tableView.reloadData()
+//        searchBar.resignFirstResponder()
         print("filtered array isssss \(filteredDogArray)")
 
      }
     
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        isFiltering = true
-//    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -101,7 +107,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         if isFiltering {
             cell.nameLabel.text = self.filteredDogArray[indexPath.row].name
-            let url = URL(string: self.filteredDogArray[indexPath.row].imageUrl )
+            let url = URL(string: self.filteredDogArray[indexPath.row].imageUrl)
             do {
                 let data = try Data(contentsOf: url!)
                 let image = UIImage(data: data)
@@ -109,6 +115,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 print("success")
             } catch let err {
                 print("Error : \(err.localizedDescription)")
+            }
+            if filteredDogArray[indexPath.row].fav == true {
+                cell.heartImageView.image = UIImage(named: "heart")
+            } else {
+                cell.heartImageView.isHidden = true
             }
             
         } else {
@@ -122,6 +133,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } catch let err {
             print("Error : \(err.localizedDescription)")
         }
+            if dogArray[indexPath.row].fav == true {
+                cell.heartImageView.image = UIImage(named: "heart")
+            } else {
+                cell.heartImageView.isHidden = true
+            }
         }
         
         
@@ -136,9 +152,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     //スワイプしたセルを削除　※arrayNameは変数名に変更してください
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            dogArray.remove(at: indexPath.row)
             let documentId = dogArray[indexPath.row].id
             dogFirebase.deleteDocument(documentId: documentId)
+            dogArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
         }
     }

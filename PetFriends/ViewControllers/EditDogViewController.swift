@@ -21,12 +21,16 @@ class EditDogViewController: UIViewController {
     var newBreed = String()
     var newOther = String()
     var newGender = Bool()
+    var newFav = Bool()
     var newImageUrl = String()
     var documentId = String()
     var textFieldArray = [String]()
      
     override func viewDidLoad() {
         super.viewDidLoad()
+        dogImageView.layer.cornerRadius = 20
+        dogImageView.clipsToBounds = true
+        
         print("imageURL is in DetailVC is :\(newImageUrl)")
         
         let url = URL(string: self.newImageUrl)
@@ -123,6 +127,16 @@ extension EditDogViewController {
 }
 
 extension EditDogViewController: UITableViewDelegate, UITableViewDataSource, InputTextFieldCellDelegate, InputTextViewCellDelegate, InputPickerDelegate {
+    
+//    func switchChanged(_ sender: UISwitch) {
+//        if sender.isOn {
+//        newFav = true
+//        } else {
+//            newFav = false
+//        }
+//        print("switch value is \(newFav)")
+//    }
+    
     
 //    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 //        let genderChoiceArray = ["オス", "メス"]
@@ -227,13 +241,13 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        
-        if indexPath.row == 4 {
-            let newDog = AddedDogStruct(name: newName, breed: newBreed, gender: newGender, bio: newOther)
+        if indexPath.row == 5 {
+            let newDog = AddedDogStruct(name: newName, breed: newBreed, gender: newGender, fav: newFav, bio: newOther)
 //            
             let dogFirebase = DogFirebase()
-                dogFirebase.updateData(id: documentId, name: newName, breed: newBreed, bio: newOther, gender: newGender, imageUrl: newImageUrl)
+            dogFirebase.updateData(id: documentId, name: newName, breed: newBreed, bio: newOther, gender: newGender, fav: newFav, imageUrl: newImageUrl)
  //           dogFirebase.uploadImage(addedDog: newDog, view: dogImageView)
-            dogFirebase.updateImage(id: documentId, name: newName, breed: newBreed, bio: newOther, gender: newGender, view: dogImageView)
+            dogFirebase.updateImage(id: documentId, name: newName, breed: newBreed, bio: newOther, gender: newGender, fav: newFav, view: dogImageView)
 //            
             print("name is\(newDog.name)")
             print("breed is \(newBreed)")
@@ -252,11 +266,11 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 
 extension EditDogViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            dogImageView.image = info[.editedImage] as? UIImage
-            dogImageView.isHidden = false
-            dismiss(animated: true, completion: nil)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dogImageView.image = info[.editedImage] as? UIImage
+        dogImageView.isHidden = false
+        dismiss(animated: true, completion: nil)
 
-        }
+    }
 
 }

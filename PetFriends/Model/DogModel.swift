@@ -15,6 +15,7 @@ class DogModel {
     let breed: String
     let gender: Bool
     let bio: String
+    let fav: Bool
     let imageUrl: String
     
     init(dic: [String: Any]) {
@@ -23,6 +24,7 @@ class DogModel {
        self.breed = dic["breed"] as? String ?? ""
        self.gender = dic["gender"] as? Bool ?? true
        self.bio = dic["bio"] as? String ?? ""
+        self.fav = dic["fav"] as? Bool ?? true
        self.imageUrl = dic["imageUrl"] as? String ?? ""
    }
 }

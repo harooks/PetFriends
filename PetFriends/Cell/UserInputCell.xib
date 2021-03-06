@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9p-dX-3xi">
-                        <rect key="frame" x="10" y="0.0" width="300" height="44"/>
+                        <rect key="frame" x="20" y="0.0" width="290" height="44"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
@@ -25,7 +25,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="O9p-dX-3xi" secondAttribute="trailing" constant="10" id="B6U-93-hgg"/>
                     <constraint firstItem="O9p-dX-3xi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="MM9-RO-qJN"/>
-                    <constraint firstItem="O9p-dX-3xi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ZsK-fR-sZ9"/>
+                    <constraint firstItem="O9p-dX-3xi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ZsK-fR-sZ9"/>
                     <constraint firstAttribute="bottom" secondItem="O9p-dX-3xi" secondAttribute="bottom" id="ctr-dI-D1r"/>
                 </constraints>
             </tableViewCellContentView>

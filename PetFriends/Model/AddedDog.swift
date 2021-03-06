@@ -13,6 +13,7 @@ struct AddedDogStruct {
     var name: String
     var breed: String
     var gender: Bool
+    var fav: Bool
     var bio: String
 //    var imageUrl: String
 }

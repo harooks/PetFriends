@@ -151,17 +151,27 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7ia-VS-OiG">
+                                                    <rect key="frame" x="354" y="59" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="TrZ-fT-fxv"/>
+                                                        <constraint firstAttribute="height" constant="20" id="z8g-hp-tcW"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="7ia-VS-OiG" firstAttribute="centerY" secondItem="UeC-eI-UTx" secondAttribute="centerY" id="785-mT-2y0"/>
                                                 <constraint firstItem="OJ0-vW-Ptb" firstAttribute="centerY" secondItem="UeC-eI-UTx" secondAttribute="centerY" id="8F0-wr-I51"/>
                                                 <constraint firstItem="OJ0-vW-Ptb" firstAttribute="leading" secondItem="NM8-Ev-fby" secondAttribute="trailing" constant="60" id="Bqo-lK-OJ9"/>
                                                 <constraint firstItem="NM8-Ev-fby" firstAttribute="centerY" secondItem="UeC-eI-UTx" secondAttribute="centerY" id="jss-Rt-Fbh"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OJ0-vW-Ptb" secondAttribute="trailing" constant="20" symbolic="YES" id="krm-rr-SNc"/>
                                                 <constraint firstItem="NM8-Ev-fby" firstAttribute="leading" secondItem="UeC-eI-UTx" secondAttribute="leadingMargin" constant="20" id="lL0-o1-okq"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7ia-VS-OiG" secondAttribute="trailing" constant="20" id="z6V-zR-8pZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dogImageView" destination="NM8-Ev-fby" id="KB9-f2-u4D"/>
+                                            <outlet property="heartImageView" destination="7ia-VS-OiG" id="Tq2-dA-6NJ"/>
                                             <outlet property="nameLabel" destination="OJ0-vW-Ptb" id="bhM-i7-7Ma"/>
                                         </connections>
                                     </tableViewCell>
@@ -287,6 +297,7 @@
                         <outlet property="cameraButton" destination="ngR-Gm-iPb" id="2Km-Qw-5vY"/>
                         <outlet property="dogImageView" destination="Wty-97-FBk" id="0wZ-bR-HfM"/>
                         <outlet property="table" destination="XDW-Bp-HMQ" id="YVN-zH-MY5"/>
+                        <outlet property="upperView" destination="9jK-hn-EaG" id="5Hf-L4-wAN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Y4-gb-LzT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

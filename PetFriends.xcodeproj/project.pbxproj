@@ -38,6 +38,8 @@
 		F5C40F6F25E4E33800B5D3D5 /* PetFriendsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C40F6E25E4E33800B5D3D5 /* PetFriendsTests.swift */; };
 		F5C40F7A25E4E33800B5D3D5 /* PetFriendsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C40F7925E4E33800B5D3D5 /* PetFriendsUITests.swift */; };
 		F5D3187125E604970017064C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5D3187025E604970017064C /* GoogleService-Info.plist */; };
+		F5FB44B325F3C4AF0028EBF1 /* FavouriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FB44B125F3C4AF0028EBF1 /* FavouriteTableViewCell.swift */; };
+		F5FB44B425F3C4AF0028EBF1 /* FavouriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5FB44B225F3C4AF0028EBF1 /* FavouriteTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,8 @@
 		F5C40F7925E4E33800B5D3D5 /* PetFriendsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetFriendsUITests.swift; sourceTree = "<group>"; };
 		F5C40F7B25E4E33800B5D3D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5D3187025E604970017064C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F5FB44B125F3C4AF0028EBF1 /* FavouriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteTableViewCell.swift; sourceTree = "<group>"; };
+		F5FB44B225F3C4AF0028EBF1 /* FavouriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouriteTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,8 @@
 				F582598625EBC96C00C6B35A /* PickerTableViewCell.xib */,
 				F52E2C5925EBD2AA00552BD4 /* ButtonCell.swift */,
 				F52E2C5A25EBD2AA00552BD4 /* ButtonCell.xib */,
+				F5FB44B125F3C4AF0028EBF1 /* FavouriteTableViewCell.swift */,
+				F5FB44B225F3C4AF0028EBF1 /* FavouriteTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -385,6 +391,7 @@
 				F52E2C5C25EBD2AA00552BD4 /* ButtonCell.xib in Resources */,
 				F582597A25EBC4D400C6B35A /* UserInputCell.xib in Resources */,
 				F582598125EBC95700C6B35A /* TextViewTableViewCell.xib in Resources */,
+				F5FB44B425F3C4AF0028EBF1 /* FavouriteTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5C40F5C25E4E33600B5D3D5 /* ViewController.swift in Sources */,
+				F5FB44B325F3C4AF0028EBF1 /* FavouriteTableViewCell.swift in Sources */,
 				F5C40F5825E4E33600B5D3D5 /* AppDelegate.swift in Sources */,
 				F539B00825E74A3500AED4E9 /* AddedDog.swift in Sources */,
 				F547C89725E67FB70034716D /* DogTableViewCell.swift in Sources */,

@@ -33,6 +33,7 @@ class DogFirebase {
             "breed": dog?.breed,
             "gender": dog?.gender,
             "bio": dog?.bio,
+            "fav": dog?.fav,
             "imageUrl": imageUrl,
             "created": Timestamp(date: Date())
         ] as [String : Any]
@@ -73,7 +74,7 @@ class DogFirebase {
     }
     
 
-    func updateData(id: String, name: String, breed: String, bio: String, gender: Bool, imageUrl: String) {
+    func updateData(id: String, name: String, breed: String, bio: String, gender: Bool, fav: Bool, imageUrl: String) {
         
         let ref = db.collection("users").document(uidString).collection("savedDogs")
         
@@ -83,6 +84,7 @@ class DogFirebase {
             "breed": breed,
             "gender": gender,
             "bio": bio,
+            "fav": fav,
             "imageUrl": imageUrl,
         ] as [String : Any]
         
@@ -90,7 +92,7 @@ class DogFirebase {
         
     }
     
-    func updateImage(id: String, name: String, breed: String, bio: String, gender: Bool, view: UIImageView) {
+    func updateImage(id: String, name: String, breed: String, bio: String, gender: Bool, fav: Bool, view: UIImageView) {
         guard let imageData = view.image?.jpegData(compressionQuality: 0.75) else {
             print("not working")
             return }
@@ -123,6 +125,7 @@ class DogFirebase {
                     "breed": breed,
                     "gender": gender,
                     "bio": bio,
+                    "fav": fav,
                     "imageUrl": urlString,
                 ] as [String : Any]
                 

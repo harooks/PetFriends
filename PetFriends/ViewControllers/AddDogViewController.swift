@@ -138,22 +138,12 @@ extension AddDogViewController: UIImagePickerControllerDelegate, UINavigationCon
 
 }
 
-extension AddDogViewController: UITableViewDelegate, UITableViewDataSource, InputTextFieldCellDelegate, InputTextViewCellDelegate, InputPickerDelegate  {
+extension AddDogViewController: UITableViewDelegate, UITableViewDataSource, InputTextFieldCellDelegate, InputTextViewCellDelegate, InputPickerDelegate, FavouriteCellDelegate {
     
-//    func switchChanged(_ sender: UISwitch) {
-//        if sender.isOn {
-//        newFav = true
-//        } else {
-//            newFav = false
-//        }
-//        print("switch value is \(newFav)")
-//    }
-    
-    
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        let genderChoiceArray = ["オス", "メス"]
-//        return genderChoiceArray[row]
-//    }
+    func didChangeSwitchState(cell: FavouriteTableViewCell, isOn: Bool) {
+        newFav = isOn
+        print("didChangeSwitchState:  \(newFav)")
+    }
     
     
     func pickerView(_ pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
@@ -231,7 +221,6 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
             print("taags is:\(fieldCell.textField.tag)")
             fieldCell.textField.placeholder = "犬種"
             fieldCell.delegate = self
- 
         }
         return fieldCell
     } else if indexPath.row == 2 {
@@ -245,8 +234,10 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         return textViewCell
     } else if indexPath.row == 4 {
         let switchCell = tableView.dequeueReusableCell(withIdentifier: FavouriteTableViewCell.identifier) as! FavouriteTableViewCell
-        newFav = switchCell.isFavourite
-        print("switch value is \(switchCell.isFavourite)")
+        switchCell.delegate = self
+        
+//        newFav = switchCell.favouriteSwitch.isOn
+//        print("switch value is in cell \(switchCell.isFavourite)")
         return switchCell
     } else {
         let btnCell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier) as! ButtonCell

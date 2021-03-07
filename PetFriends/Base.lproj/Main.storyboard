@@ -123,7 +123,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AlP-Lx-Zez">
-                                <rect key="frame" x="0.0" y="118" width="414" height="744"/>
+                                <rect key="frame" x="0.0" y="132" width="414" height="730"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="6an-NZ-D8f">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -146,7 +146,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ozzy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJ0-vW-Ptb">
-                                                    <rect key="frame" x="180" y="55.5" width="49" height="27"/>
+                                                    <rect key="frame" x="140" y="55.5" width="49" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -162,7 +162,7 @@
                                             <constraints>
                                                 <constraint firstItem="7ia-VS-OiG" firstAttribute="centerY" secondItem="UeC-eI-UTx" secondAttribute="centerY" id="785-mT-2y0"/>
                                                 <constraint firstItem="OJ0-vW-Ptb" firstAttribute="centerY" secondItem="UeC-eI-UTx" secondAttribute="centerY" id="8F0-wr-I51"/>
-                                                <constraint firstItem="OJ0-vW-Ptb" firstAttribute="leading" secondItem="NM8-Ev-fby" secondAttribute="trailing" constant="60" id="Bqo-lK-OJ9"/>
+                                                <constraint firstItem="OJ0-vW-Ptb" firstAttribute="leading" secondItem="NM8-Ev-fby" secondAttribute="trailing" constant="20" id="Bqo-lK-OJ9"/>
                                                 <constraint firstItem="NM8-Ev-fby" firstAttribute="centerY" secondItem="UeC-eI-UTx" secondAttribute="centerY" id="jss-Rt-Fbh"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OJ0-vW-Ptb" secondAttribute="trailing" constant="20" symbolic="YES" id="krm-rr-SNc"/>
                                                 <constraint firstItem="NM8-Ev-fby" firstAttribute="leading" secondItem="UeC-eI-UTx" secondAttribute="leadingMargin" constant="20" id="lL0-o1-okq"/>
@@ -178,28 +178,41 @@
                                 </prototypes>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h78-he-7Sc">
-                                <rect key="frame" x="0.0" y="74" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
                                 <textAttributes key="titleTextAttributes">
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Title" id="XIz-ln-jt7">
-                                        <barButtonItem key="rightBarButtonItem" title="+" id="HSX-NI-Gmm">
+                                        <barButtonItem key="rightBarButtonItem" title="Logout" id="HSX-NI-Gmm">
                                             <connections>
-                                                <segue destination="rTB-Tb-H3g" kind="presentation" modalPresentationStyle="fullScreen" id="Cs6-lj-SJD"/>
+                                                <action selector="logoutButtonTapped:" destination="cll-cY-NlW" id="z8X-Ma-M3i"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sd4-Qy-3cx">
+                                <rect key="frame" x="324" y="772" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="dhX-tM-PfV"/>
+                                    <constraint firstAttribute="width" secondItem="Sd4-Qy-3cx" secondAttribute="height" multiplier="1:1" id="gVB-aV-B4v"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="nikukyuButton"/>
+                                <connections>
+                                    <segue destination="rTB-Tb-H3g" kind="presentation" modalPresentationStyle="fullScreen" id="WaX-pI-Qqv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8sv-WL-bum"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="8sv-WL-bum" firstAttribute="bottom" secondItem="AlP-Lx-Zez" secondAttribute="bottom" id="Daj-2P-b4T"/>
+                            <constraint firstItem="8sv-WL-bum" firstAttribute="trailing" secondItem="Sd4-Qy-3cx" secondAttribute="trailing" constant="40" id="Lew-Kq-Uun"/>
                             <constraint firstItem="h78-he-7Sc" firstAttribute="trailing" secondItem="AlP-Lx-Zez" secondAttribute="trailing" id="Nu4-yU-TbE"/>
+                            <constraint firstItem="8sv-WL-bum" firstAttribute="bottom" secondItem="Sd4-Qy-3cx" secondAttribute="bottom" constant="40" id="TaH-uv-ArW"/>
                             <constraint firstItem="8sv-WL-bum" firstAttribute="trailing" secondItem="AlP-Lx-Zez" secondAttribute="trailing" id="eOb-x3-oc7"/>
-                            <constraint firstItem="h78-he-7Sc" firstAttribute="top" secondItem="EpT-uz-fl5" secondAttribute="topMargin" constant="-14" id="h7E-WH-6Zm"/>
+                            <constraint firstItem="h78-he-7Sc" firstAttribute="top" secondItem="EpT-uz-fl5" secondAttribute="topMargin" id="h7E-WH-6Zm"/>
                             <constraint firstItem="AlP-Lx-Zez" firstAttribute="top" secondItem="h78-he-7Sc" secondAttribute="bottom" id="qsx-Hp-NgB"/>
                             <constraint firstItem="h78-he-7Sc" firstAttribute="leading" secondItem="AlP-Lx-Zez" secondAttribute="leading" id="rk3-Cz-z1B"/>
                             <constraint firstItem="AlP-Lx-Zez" firstAttribute="leading" secondItem="8sv-WL-bum" secondAttribute="leading" id="wby-eo-qqc"/>
@@ -291,6 +304,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="3hR-dE-S98"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="albumButton" destination="TRj-Dr-UeP" id="yLs-II-DkQ"/>
@@ -497,6 +511,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="nikukyuButton" width="133" height="133"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

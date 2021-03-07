@@ -44,8 +44,13 @@ class EditDogViewController: UIViewController {
     }
 
         table.register(UserInputCell.nib(), forCellReuseIdentifier: UserInputCell.identifier)
+       
         table.register(TextViewTableViewCell.nib(), forCellReuseIdentifier: TextViewTableViewCell.identifier)
+       
         table.register(PickerTableViewCell.nib(), forCellReuseIdentifier: PickerTableViewCell.identifier)
+       
+        table.register(FavouriteTableViewCell.nib(), forCellReuseIdentifier: FavouriteTableViewCell.identifier)
+       
         table.register(ButtonCell.nib(), forCellReuseIdentifier: ButtonCell.identifier)
         table.delegate = self
         table.dataSource = self
@@ -96,7 +101,11 @@ class EditDogViewController: UIViewController {
         
     }
     
-    
+    @objc func changeSwitch(_ sender: UISwitch) {
+        
+        newFav = sender.isOn
+        print("sender the switch ran : \(newFav)")
+    }
     
 
 }
@@ -128,20 +137,7 @@ extension EditDogViewController {
 
 extension EditDogViewController: UITableViewDelegate, UITableViewDataSource, InputTextFieldCellDelegate, InputTextViewCellDelegate, InputPickerDelegate {
     
-//    func switchChanged(_ sender: UISwitch) {
-//        if sender.isOn {
-//        newFav = true
-//        } else {
-//            newFav = false
-//        }
-//        print("switch value is \(newFav)")
-//    }
-    
-    
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        let genderChoiceArray = ["オス", "メス"]
-//        return genderChoiceArray[row]
-//    }
+
     
     
     func pickerView(_ pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
@@ -187,7 +183,7 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
 }
 
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    5
+    6
 }
 
     
@@ -232,6 +228,13 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         textViewCell.textView.text = newOther
         textViewCell.delegate = self
         return textViewCell
+    } else if indexPath.row == 4 {
+        let switchCell = tableView.dequeueReusableCell(withIdentifier: FavouriteTableViewCell.identifier) as! FavouriteTableViewCell
+//        switchCell.favouriteSwitch.isOn = newFav
+        switchCell.favouriteSwitch.tag = indexPath.row
+        switchCell.favouriteSwitch.addTarget(self, action: #selector(changeSwitch(_:)), for: UIControl.Event.valueChanged)
+
+        return switchCell
     } else {
         let btnCell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier) as! ButtonCell
         return btnCell
@@ -242,6 +245,8 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        
         if indexPath.row == 5 {
+            
+            
             let newDog = AddedDogStruct(name: newName, breed: newBreed, gender: newGender, fav: newFav, bio: newOther)
 //            
             let dogFirebase = DogFirebase()
@@ -251,9 +256,9 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 //            
             print("name is\(newDog.name)")
             print("breed is \(newBreed)")
-            print("save button worked ")
+            print("switch value is \(newFav)")
 //            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 self.navigationController?.popToRootViewController(animated: true)
             }
 //            

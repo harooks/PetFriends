@@ -7,9 +7,9 @@
 
 import UIKit
 
-//protocol FavouriteCellDelegate{
-//    func switchChanged(_ sender: UISwitch)
-//}
+protocol FavouriteCellDelegate{
+    func didChangeSwitchState(cell: FavouriteTableViewCell, isOn: Bool)
+}
 
 
 class FavouriteTableViewCell: UITableViewCell {
@@ -18,24 +18,33 @@ class FavouriteTableViewCell: UITableViewCell {
     
     static let identifier = "SwitchCell"
     
-    var isFavourite: Bool = false
+//    var isFavourite: Bool = false
+    
+    var switchValueChangedCompletion: (() -> Bool)?
+    
     
     static func nib() -> UINib {
         return UINib(nibName: "FavouriteTableViewCell", bundle: nil)
     }
     
-//    var delegate: FavouriteCellDelegate! = nil
+    var delegate: FavouriteCellDelegate! = nil
     
-    @IBAction func switchChanged(_ sender: UISwitch) {
-        if favouriteSwitch.isOn {
-            isFavourite = true
+    
+    @IBAction func switchChanged(_ sender: Any) {
+        
+        print("switch!!!!!!!!!!\(favouriteSwitch.isOn)")
+        if (sender as AnyObject).isOn {
+            print("on")
         } else {
-            isFavourite = false
+            print("off")
         }
+        
+        self.delegate?.didChangeSwitchState(cell: self, isOn: favouriteSwitch.isOn)
+        
   //      self.delegate.switchChanged(favouriteSwitch)
 //        self.delegate.switchChanged(favouriteSwitch)
     }
-    
+        
     
     
     
@@ -49,5 +58,7 @@ class FavouriteTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+
     
 }

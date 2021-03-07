@@ -77,7 +77,6 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDa
     
     func pickerView(_ pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
         self.delegate.pickerView(pickerView, didSelectRow: row, inComponent: 0)
-
     }
     
     

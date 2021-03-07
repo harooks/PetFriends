@@ -35,7 +35,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
       self.navigationController?.isNavigationBarHidden = true
         tableView.dataSource = self
@@ -48,12 +47,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        }
     }
     
+    
+    @IBAction func logoutButtonTapped(_ sender: Any) {
+        
+        
+    }
+    
 
  //Search bar realted functions---------
-    
-    
-    
-
+ 
      //  検索バーに入力があったら呼ばれる
      func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //        filteredDogArray = dogArray
@@ -117,6 +119,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 print("Error : \(err.localizedDescription)")
             }
             if filteredDogArray[indexPath.row].fav == true {
+                cell.heartImageView.isHidden = false
                 cell.heartImageView.image = UIImage(named: "heart")
             } else {
                 cell.heartImageView.isHidden = true
@@ -135,6 +138,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
             if dogArray[indexPath.row].fav == true {
                 cell.heartImageView.image = UIImage(named: "heart")
+                cell.heartImageView.isHidden = false
             } else {
                 cell.heartImageView.isHidden = true
             }

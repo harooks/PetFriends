@@ -20,6 +20,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var heartButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
   
@@ -31,7 +32,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.dogArray.reverse()
             self.tableView.reloadData()
         }
-
     }
     
     override func viewDidLoad() {
@@ -40,6 +40,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
+        
+        let image = UIImage(named: "heartGray")
+        heartButton.setBackgroundImage(image, for: .normal)
         
 //        tableView.register(DogTableViewCell.self, forCellReuseIdentifier: "Cell")
 //        DispatchQueue.main.async {
@@ -50,12 +53,57 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
         
+        let alert:UIAlertController = UIAlertController(title: "ログアウトしますか？", message: "ログアウトしたら最初の画面に戻ります", preferredStyle: .alert)
         
+        alert.addAction(UIAlertAction (
+            title: "OK",
+            style: .default,
+            handler: { action in
+                self.dogFirebase.signOut()
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let firstVC = storyboard.instantiateViewController(identifier: "firstNavVC")
+                self.view.window?.rootViewController = firstVC
+                self.view.window?.makeKeyAndVisible()
+            }
+        ))
+        
+        alert.addAction(UIAlertAction (
+            title: "キャンセル",
+            style: .cancel
+        ))
+        
+        present(alert, animated: true, completion: nil)
     }
     
 
  //Search bar realted functions---------
  
+    
+    @IBAction func filterFavourite(_ sender: Any) {
+        isFiltering = true
+        filteredDogArray = []
+        
+        if heartButton.currentBackgroundImage == UIImage(named: "heartGray") {
+            heartButton.setBackgroundImage(UIImage(named: "heart"), for: .normal)
+            for dog in dogArray {
+                    if dog.fav {
+                        filteredDogArray.append(dog)
+                        print("filtered dogs name isssss \(dog.name)")
+
+                        }
+        }
+        } else {
+            heartButton.setBackgroundImage(UIImage(named: "heartGray"), for: .normal)
+            filteredDogArray = dogArray
+        }
+            tableView.reloadData()
+////        searchBar.resignFirstResponder()
+//        print("filtered array isssss \(filteredDogArray)")
+//
+//
+    }
+    
+    
      //  検索バーに入力があったら呼ばれる
      func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //        filteredDogArray = dogArray

@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "Vector 5.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Asset 5@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

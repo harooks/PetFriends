@@ -29,21 +29,33 @@ class SignUpViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = design.subColor
         
+//        firstNameTextField.borderStyle = .roundedRect
         firstNameTextField.layer.cornerRadius = 10
         firstNameTextField.layer.borderWidth = 1.5
         firstNameTextField.layer.borderColor = design.subColor.cgColor
+        firstNameTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: firstNameTextField.frame.height))
+        firstNameTextField.leftViewMode = .always
         
+//        lastNameTextField.borderStyle = .roundedRect
         lastNameTextField.layer.cornerRadius = 10
         lastNameTextField.layer.borderWidth = 1.5
         lastNameTextField.layer.borderColor = design.subColor.cgColor
+        lastNameTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: lastNameTextField.frame.height))
+        lastNameTextField.leftViewMode = .always
         
+//        emailTextField.borderStyle = .roundedRect
         emailTextField.layer.cornerRadius = 10
         emailTextField.layer.borderWidth = 1.5
         emailTextField.layer.borderColor = design.subColor.cgColor
+        emailTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: emailTextField.frame.height))
+        emailTextField.leftViewMode = .always
                 
+//        passwordTextField.borderStyle = .roundedRect
         passwordTextField.layer.cornerRadius = 10
         passwordTextField.layer.borderWidth = 1.5
         passwordTextField.layer.borderColor = design.subColor.cgColor
+        passwordTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: passwordTextField.frame.height))
+        passwordTextField.leftViewMode = .always
     
         signupButton.layer.cornerRadius = 10
     }

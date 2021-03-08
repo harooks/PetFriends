@@ -28,13 +28,19 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = design.subColor
         
+//        emailTextField.borderStyle = .none
         emailTextField.layer.cornerRadius = 10
         emailTextField.layer.borderWidth = 1.5
+        emailTextField.layer.masksToBounds = true
         emailTextField.layer.borderColor = design.subColor.cgColor
+        emailTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: emailTextField.frame.height))
+        emailTextField.leftViewMode = .always
                 
         passwordTextField.layer.cornerRadius = 10
         passwordTextField.layer.borderWidth = 1.5
         passwordTextField.layer.borderColor = design.subColor.cgColor
+        passwordTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: passwordTextField.frame.height))
+        passwordTextField.leftViewMode = .always
         
         loginButton.layer.cornerRadius = 10
         

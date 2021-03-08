@@ -17,6 +17,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var filteredDogArray:[DogModel] = []
     var dogFirebase = DogFirebase()
     var isFiltering:Bool = false
+    var design = Design()
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -36,6 +37,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.barTintColor = design.themeColor
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = design.subColor
+        
+        searchBar.searchTextField.backgroundColor = .white
+        
       self.navigationController?.isNavigationBarHidden = true
         tableView.dataSource = self
         tableView.delegate = self
@@ -225,6 +233,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("bio saved is: \(editVC.newOther)")
         editVC.newGender = dogArray[indexPath.row].gender
         editVC.documentId = dogArray[indexPath.row].id
+        editVC.newFav = dogArray[indexPath.row].fav
         
         print("imageURL is: \(dogArray[indexPath.row].imageUrl)")
         editVC.newImageUrl = dogArray[indexPath.row].imageUrl

@@ -18,10 +18,26 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     
+    var design = Design()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        navigationController?.navigationBar.barTintColor = design.themeColor
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = design.subColor
+        
+        emailTextField.layer.cornerRadius = 10
+        emailTextField.layer.borderWidth = 1.5
+        emailTextField.layer.borderColor = design.subColor.cgColor
+                
+        passwordTextField.layer.cornerRadius = 10
+        passwordTextField.layer.borderWidth = 1.5
+        passwordTextField.layer.borderColor = design.subColor.cgColor
+        
+        loginButton.layer.cornerRadius = 10
+        
     }
     
     func validateTextFields() -> String? {
@@ -48,7 +64,7 @@ class LoginViewController: UIViewController {
                       
                       if error != nil {
                           //couldn't login
-                          self.showError(_message: "docchika chigau")
+                          self.showError(_message: "メールかパスワードが違います")
                       } else {
                           
                       //go to home screen

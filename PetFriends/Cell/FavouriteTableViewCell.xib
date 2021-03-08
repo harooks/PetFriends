@@ -22,13 +22,15 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ko2-h2-YkP">
+                    <switch clearsContextBeforeDrawing="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ko2-h2-YkP">
                         <rect key="frame" x="251" y="6.5" width="51" height="31"/>
+                        <color key="onTintColor" red="0.25882352939999997" green="0.41176470590000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <action selector="switchChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="cfm-ck-8HT"/>
                         </connections>
                     </switch>
                 </subviews>
+                <color key="backgroundColor" red="0.62352941179999999" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="ze8-TM-Hd6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="G63-ZO-a1c"/>
                     <constraint firstItem="ze8-TM-Hd6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LuM-5w-ZlL"/>
@@ -40,7 +42,7 @@
             <connections>
                 <outlet property="favouriteSwitch" destination="Ko2-h2-YkP" id="4W5-fL-DCq"/>
             </connections>
-            <point key="canvasLocation" x="139" y="87"/>
+            <point key="canvasLocation" x="137.68115942028987" y="86.383928571428569"/>
         </tableViewCell>
     </objects>
 </document>

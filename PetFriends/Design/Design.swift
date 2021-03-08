@@ -12,10 +12,13 @@ class Design: UIColor {
 
     let themeColor = UIColor(red: 160/255, green: 207/255, blue: 103/255, alpha: 1.0)
     
+    let subColor = UIColor(red: 66/255, green: 105/255, blue: 60/255, alpha: 1.0)
+    
     var cornerRadius:(UIView) -> () = { view in
         view.layer.cornerRadius = 10
         view.layer.borderWidth = 1
     }
+
 
 //    func addLayerToShadow1() -> UIView{
 //        let shadow = UIView()
@@ -40,9 +43,5 @@ class Design: UIColor {
 //        layeredShadow.clipsToBounds = false
 //        view.addSubview(layeredShadow)
 //    }
-    
 
-    
-    
-    
 }

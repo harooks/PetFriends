@@ -18,7 +18,8 @@
                 <subviews>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9p-dX-3xi">
                         <rect key="frame" x="20" y="0.0" width="290" height="44"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
@@ -30,6 +31,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" red="0.62352941179999999" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="textField" destination="O9p-dX-3xi" id="9IP-jr-87Y"/>
             </connections>

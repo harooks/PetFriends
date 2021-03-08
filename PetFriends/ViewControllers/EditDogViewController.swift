@@ -25,9 +25,17 @@ class EditDogViewController: UIViewController {
     var newImageUrl = String()
     var documentId = String()
     var textFieldArray = [String]()
+    
+    var design = Design()
      
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        navigationController?.navigationBar.barTintColor = design.themeColor
+//        navigationController?.navigationBar.shadowImage = UIImage()
+//        navigationController?.navigationBar.tintColor = design.subColor
+        
+        
         dogImageView.layer.cornerRadius = 20
         dogImageView.clipsToBounds = true
         
@@ -107,6 +115,12 @@ class EditDogViewController: UIViewController {
         print("sender the switch ran : \(newFav)")
     }
     
+    @IBAction func returnToHomeTapped(_ sender: Any) {
+        
+        navigationController?.popToRootViewController(animated: true)
+    
+    }
+   
 
 }
 
@@ -135,9 +149,12 @@ extension EditDogViewController {
 
 }
 
-extension EditDogViewController: UITableViewDelegate, UITableViewDataSource, InputTextFieldCellDelegate, InputTextViewCellDelegate, InputPickerDelegate {
+extension EditDogViewController: UITableViewDelegate, UITableViewDataSource, InputTextFieldCellDelegate, InputTextViewCellDelegate, InputPickerDelegate, FavouriteCellDelegate {
     
-
+    func didChangeSwitchState(cell: FavouriteTableViewCell, isOn: Bool) {
+        newFav = isOn
+        print("didChangeSwitchState!:  \(newFav)")
+    }
     
     
     func pickerView(_ pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
@@ -231,9 +248,13 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     } else if indexPath.row == 4 {
         let switchCell = tableView.dequeueReusableCell(withIdentifier: FavouriteTableViewCell.identifier) as! FavouriteTableViewCell
 //        switchCell.favouriteSwitch.isOn = newFav
-        switchCell.favouriteSwitch.tag = indexPath.row
-        switchCell.favouriteSwitch.addTarget(self, action: #selector(changeSwitch(_:)), for: UIControl.Event.valueChanged)
-
+        print("edit view newFav is :\(newFav)")
+        if newFav == true {
+            switchCell.favouriteSwitch.isOn = true
+        } else {
+            switchCell.favouriteSwitch.isOn = false
+        }
+        switchCell.delegate = self
         return switchCell
     } else {
         let btnCell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier) as! ButtonCell

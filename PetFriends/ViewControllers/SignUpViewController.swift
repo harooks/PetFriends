@@ -15,15 +15,37 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
+    @IBOutlet weak var signupButton: UIButton!
     
     @IBOutlet weak var errorLabel: UILabel!
     
+    var design = Design()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        navigationController?.navigationBar.barTintColor = design.themeColor
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = design.subColor
+        
+        firstNameTextField.layer.cornerRadius = 10
+        firstNameTextField.layer.borderWidth = 1.5
+        firstNameTextField.layer.borderColor = design.subColor.cgColor
+        
+        lastNameTextField.layer.cornerRadius = 10
+        lastNameTextField.layer.borderWidth = 1.5
+        lastNameTextField.layer.borderColor = design.subColor.cgColor
+        
+        emailTextField.layer.cornerRadius = 10
+        emailTextField.layer.borderWidth = 1.5
+        emailTextField.layer.borderColor = design.subColor.cgColor
+                
+        passwordTextField.layer.cornerRadius = 10
+        passwordTextField.layer.borderWidth = 1.5
+        passwordTextField.layer.borderColor = design.subColor.cgColor
+    
+        signupButton.layer.cornerRadius = 10
     }
     
     func validateFields() -> String? {

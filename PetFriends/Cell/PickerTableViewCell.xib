@@ -18,8 +18,10 @@
                 <subviews>
                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjR-e6-6RE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                        <color key="backgroundColor" red="0.62352941179999999" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                     </pickerView>
                 </subviews>
+                <color key="backgroundColor" red="0.62352941179999999" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="GjR-e6-6RE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="C6M-ja-bzX"/>
                     <constraint firstAttribute="trailing" secondItem="GjR-e6-6RE" secondAttribute="trailing" id="Hhx-pO-1Zn"/>

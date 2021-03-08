@@ -25,8 +25,15 @@ class AddDogViewController: UIViewController, UITextFieldDelegate {
     
     var textFieldArray = [String]()
     
+    var design = Design()
+    
     
     override func viewDidLoad() {
+        
+        navigationController?.navigationBar.barTintColor = design.themeColor
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = design.subColor
+        
         dogImageView.layer.cornerRadius = 20
         dogImageView.clipsToBounds = true
         table.register(UserInputCell.nib(), forCellReuseIdentifier: UserInputCell.identifier)
@@ -193,6 +200,8 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
         return 80
     } else if indexPath.row == 3 {
         return 120
+    } else if indexPath.row == 5 {
+        return 50
     } else {
         return 40
     }
@@ -248,24 +257,76 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 5 {
-            let dogFirebase = DogFirebase()
  
-            let newDog = AddedDogStruct(name: newName, breed: newBreed, gender: newGender, fav: newFav, bio: newOther)
+        if indexPath.row == 5 {
             
-            
-            dogFirebase.uploadImage(addedDog: newDog, view: dogImageView)
-            
-            print("name is\(newName)")
-            print("breed is \(newBreed)")
-            print("switch value is \(newFav)")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // ここ時間じゃなくす
-//                print("id is \(dogFirebase.id)") //works
-                self.dismiss(animated: true, completion: nil)
+            if self.newName == "" {
+                let nameWarningAlert:UIAlertController = UIAlertController(title: "保存できません", message: "名前を記入してください", preferredStyle: .alert)
+                nameWarningAlert.addAction(UIAlertAction(
+                    title: "OK",
+                    style: .cancel
+                ))
+                
+                present(nameWarningAlert, animated: true, completion: nil)
             }
             
+            if dogImageView.image == UIImage(named: "defaultDog") {
+                let imageWarningAlert:UIAlertController = UIAlertController(title: "写真がありません", message: "写真がないとデフォルトの写真で保存されます", preferredStyle: .alert)
+                imageWarningAlert.addAction(UIAlertAction(
+                    title: "保存する",
+                    style: .default,
+                    handler: { action in
+                        let dogFirebase = DogFirebase()
+                        let newDog = AddedDogStruct(name: self.newName, breed: self.newBreed, gender: self.newGender, fav: self.newFav, bio: self.newOther)
+                        dogFirebase.uploadImage(addedDog: newDog, view: self.dogImageView)
+                    
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // ここ時間じゃなくす
+            //                print("id is \(dogFirebase.id)") //works
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                    }
+                
+                ))
+                
+                imageWarningAlert.addAction(UIAlertAction (
+                    title: "キャンセル",
+                    style: .cancel
+                ))
+                
+                present(imageWarningAlert, animated: true, completion: nil)
+            }
+            
+        let alert:UIAlertController = UIAlertController(title: "ともだちを追加", message: "ともだちの情報を保存します", preferredStyle: .alert)
+            
+        alert.addAction(UIAlertAction (
+            
+            title: "OK",
+            style: .default,
+            handler: { action in
+                let dogFirebase = DogFirebase()
+                let newDog = AddedDogStruct(name: self.newName, breed: self.newBreed, gender: self.newGender, fav: self.newFav, bio: self.newOther)
+                dogFirebase.uploadImage(addedDog: newDog, view: self.dogImageView)
+            
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // ここ時間じゃなくす
+    //                print("id is \(dogFirebase.id)") //works
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        ))
+            
+            alert.addAction(UIAlertAction (
+                title: "キャンセル",
+                style: .cancel
+            ))
+            
+            present(alert, animated: true, completion: nil)
+
         } else {return}
     
-    } 
+    }
+    
+
+    
+    
 
 }

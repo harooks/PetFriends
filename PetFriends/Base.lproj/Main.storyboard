@@ -75,7 +75,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Iwj-Ov-gae">
-                                <rect key="frame" x="40" y="188" width="334" height="200.5"/>
+                                <rect key="frame" x="40" y="148" width="334" height="200.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GVd-8I-k2h">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
@@ -124,7 +124,7 @@
                         <viewLayoutGuide key="safeArea" id="Fpk-k4-J5i"/>
                         <color key="backgroundColor" red="0.62352941179999999" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Iwj-Ov-gae" firstAttribute="top" secondItem="Fpk-k4-J5i" secondAttribute="top" constant="100" id="D3l-DZ-Tin"/>
+                            <constraint firstItem="Iwj-Ov-gae" firstAttribute="top" secondItem="Fpk-k4-J5i" secondAttribute="top" constant="60" id="D3l-DZ-Tin"/>
                             <constraint firstItem="Fpk-k4-J5i" firstAttribute="trailing" secondItem="Iwj-Ov-gae" secondAttribute="trailing" constant="40" id="QHk-0T-uQJ"/>
                             <constraint firstItem="Iwj-Ov-gae" firstAttribute="leading" secondItem="Fpk-k4-J5i" secondAttribute="leading" constant="40" id="SBk-Dh-lr8"/>
                         </constraints>
@@ -492,7 +492,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="m3i-xR-x0q">
-                                <rect key="frame" x="40" y="188" width="334" height="320.5"/>
+                                <rect key="frame" x="40" y="148" width="334" height="320.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o1h-aH-ull">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
@@ -553,7 +553,7 @@
                         <constraints>
                             <constraint firstItem="RpI-Hv-2II" firstAttribute="trailing" secondItem="m3i-xR-x0q" secondAttribute="trailing" constant="40" id="Pbl-Zc-dqU"/>
                             <constraint firstItem="m3i-xR-x0q" firstAttribute="leading" secondItem="RpI-Hv-2II" secondAttribute="leading" constant="40" id="Pud-nP-bzc"/>
-                            <constraint firstItem="m3i-xR-x0q" firstAttribute="top" secondItem="RpI-Hv-2II" secondAttribute="top" constant="100" id="U0q-bM-y8n"/>
+                            <constraint firstItem="m3i-xR-x0q" firstAttribute="top" secondItem="RpI-Hv-2II" secondAttribute="top" constant="60" id="U0q-bM-y8n"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="j7R-pd-TgD"/>

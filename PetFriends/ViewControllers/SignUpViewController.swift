@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -35,6 +35,9 @@ class SignUpViewController: UIViewController {
         firstNameTextField.layer.borderColor = design.subColor.cgColor
         firstNameTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: firstNameTextField.frame.height))
         firstNameTextField.leftViewMode = .always
+//        firstNameTextField.becomeFirstResponder()
+        firstNameTextField.delegate = self
+        firstNameTextField.addTarget(self, action: #selector(onExitAction(sender:)), for: .editingDidEndOnExit)
         
 //        lastNameTextField.borderStyle = .roundedRect
         lastNameTextField.layer.cornerRadius = 10
@@ -42,6 +45,8 @@ class SignUpViewController: UIViewController {
         lastNameTextField.layer.borderColor = design.subColor.cgColor
         lastNameTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: lastNameTextField.frame.height))
         lastNameTextField.leftViewMode = .always
+        lastNameTextField.delegate = self
+        lastNameTextField.addTarget(self, action: #selector(onExitAction(sender:)), for: .editingDidEndOnExit)
         
 //        emailTextField.borderStyle = .roundedRect
         emailTextField.layer.cornerRadius = 10
@@ -49,6 +54,8 @@ class SignUpViewController: UIViewController {
         emailTextField.layer.borderColor = design.subColor.cgColor
         emailTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: emailTextField.frame.height))
         emailTextField.leftViewMode = .always
+        emailTextField.delegate = self
+        emailTextField.addTarget(self, action: #selector(onExitAction(sender:)), for: .editingDidEndOnExit)
                 
 //        passwordTextField.borderStyle = .roundedRect
         passwordTextField.layer.cornerRadius = 10
@@ -56,9 +63,15 @@ class SignUpViewController: UIViewController {
         passwordTextField.layer.borderColor = design.subColor.cgColor
         passwordTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: passwordTextField.frame.height))
         passwordTextField.leftViewMode = .always
+        passwordTextField.delegate = self
+        passwordTextField.addTarget(self, action: #selector(onExitAction(sender:)), for: .editingDidEndOnExit)
+
     
         signupButton.layer.cornerRadius = 10
+        
+        
     }
+    
     
     func validateFields() -> String? {
         
@@ -67,6 +80,18 @@ class SignUpViewController: UIViewController {
         } else {
         return nil
         }
+    }
+    
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        firstNameTextField.resignFirstResponder()
+//        lastNameTextField.resignFirstResponder()
+//        emailTextField.resignFirstResponder()
+//        passwordTextField.resignFirstResponder()
+//        return true
+//    }
+    
+    @objc func onExitAction(sender: Any) {
+        // textFieldShouldReturn(_:) で `false` を返した場合は呼出されない
     }
     
     
@@ -111,14 +136,14 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 1
     }
     
-        func transitionToHome(){
+    func transitionToHome(){
             
             let homevc = storyboard?.instantiateViewController(identifier: "HomeVC") as? HomeViewController
             view.window?.rootViewController = homevc
             view.window?.makeKeyAndVisible()
-        }
-    
+    }
 
     
 
 }
+

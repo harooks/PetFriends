@@ -15,6 +15,8 @@
 		F539B00825E74A3500AED4E9 /* AddedDog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539B00725E74A3500AED4E9 /* AddedDog.swift */; };
 		F539B01025E762DC00AED4E9 /* DogFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539B00F25E762DC00AED4E9 /* DogFirebase.swift */; };
 		F547C89725E67FB70034716D /* DogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547C89625E67FB70034716D /* DogTableViewCell.swift */; };
+		F55BCFEF25F6230E0056D527 /* MyDogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55BCFEE25F6230E0056D527 /* MyDogViewController.swift */; };
+		F55BCFF525F62FE10056D527 /* RegisteredDogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55BCFF425F62FE10056D527 /* RegisteredDogModel.swift */; };
 		F582596825EBB45800C6B35A /* AddDogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582596725EBB45800C6B35A /* AddDogViewController.swift */; };
 		F582597925EBC4D400C6B35A /* UserInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582597725EBC4D400C6B35A /* UserInputCell.swift */; };
 		F582597A25EBC4D400C6B35A /* UserInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F582597825EBC4D400C6B35A /* UserInputCell.xib */; };
@@ -74,6 +76,8 @@
 		F539B00725E74A3500AED4E9 /* AddedDog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedDog.swift; sourceTree = "<group>"; };
 		F539B00F25E762DC00AED4E9 /* DogFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogFirebase.swift; sourceTree = "<group>"; };
 		F547C89625E67FB70034716D /* DogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogTableViewCell.swift; sourceTree = "<group>"; };
+		F55BCFEE25F6230E0056D527 /* MyDogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDogViewController.swift; sourceTree = "<group>"; };
+		F55BCFF425F62FE10056D527 /* RegisteredDogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredDogModel.swift; sourceTree = "<group>"; };
 		F582596725EBB45800C6B35A /* AddDogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDogViewController.swift; sourceTree = "<group>"; };
 		F582597725EBC4D400C6B35A /* UserInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputCell.swift; sourceTree = "<group>"; };
 		F582597825EBC4D400C6B35A /* UserInputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInputCell.xib; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 				F539B00F25E762DC00AED4E9 /* DogFirebase.swift */,
 				F539B00725E74A3500AED4E9 /* AddedDog.swift */,
 				F58C281A25EB49B4006BD9FE /* DogModel.swift */,
+				F55BCFF425F62FE10056D527 /* RegisteredDogModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 				F58BF63825E608DB002524DF /* HomeViewController.swift */,
 				F582596725EBB45800C6B35A /* AddDogViewController.swift */,
 				F5BFD49125EF4DEE002A30DA /* EditDogViewController.swift */,
+				F55BCFEE25F6230E0056D527 /* MyDogViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -527,12 +533,14 @@
 				F58BF62F25E608BA002524DF /* SignUpViewController.swift in Sources */,
 				F582598725EBC96C00C6B35A /* PickerTableViewCell.swift in Sources */,
 				F58BF63425E608C8002524DF /* LoginViewController.swift in Sources */,
+				F55BCFF525F62FE10056D527 /* RegisteredDogModel.swift in Sources */,
 				F5C40F5A25E4E33600B5D3D5 /* SceneDelegate.swift in Sources */,
 				F582597925EBC4D400C6B35A /* UserInputCell.swift in Sources */,
 				F58BF63925E608DB002524DF /* HomeViewController.swift in Sources */,
 				F58C280C25EA30E6006BD9FE /* Design.swift in Sources */,
 				F58C281B25EB49B4006BD9FE /* DogModel.swift in Sources */,
 				F582596825EBB45800C6B35A /* AddDogViewController.swift in Sources */,
+				F55BCFEF25F6230E0056D527 /* MyDogViewController.swift in Sources */,
 				F5BFD49225EF4DEE002A30DA /* EditDogViewController.swift in Sources */,
 				F52E2C5B25EBD2AA00552BD4 /* ButtonCell.swift in Sources */,
 				F539B01025E762DC00AED4E9 /* DogFirebase.swift in Sources */,

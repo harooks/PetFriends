@@ -162,6 +162,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! DogTableViewCell
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = design.subColor
+        cell.selectedBackgroundView = backgroundView
 
         if isFiltering {
             cell.nameLabel.text = self.filteredDogArray[indexPath.row].name
@@ -223,6 +227,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // セルの選択を解除
          tableView.deselectRow(at: indexPath, animated: true)
+        
 
 //        let editVC = EditDogViewController()
         let editVC = storyboard?.instantiateViewController(identifier: "EditVC") as! EditDogViewController
@@ -240,11 +245,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         //get document id, store doc id in view controller. クリックしたやつのドキュメントIDをとってくる
        
-        DispatchQueue.main.async {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
         self.navigationController?.pushViewController(editVC, animated: true)
-        }
+//        }
+        
 //        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
 }
+    
+
     
 
 

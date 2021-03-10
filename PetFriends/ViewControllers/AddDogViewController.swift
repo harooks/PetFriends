@@ -44,11 +44,6 @@ class AddDogViewController: UIViewController, UITextFieldDelegate {
         table.delegate = self
         table.dataSource = self
         
-        //panジェスチャーのインスタンスを作成する
-//        let gesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
-
-        //ジェスチャーを追加する
-//        self.upperView.addGestureRecognizer(gesture)
         keyboaredSetting()
     }
     
@@ -142,7 +137,6 @@ extension AddDogViewController: UIImagePickerControllerDelegate, UINavigationCon
             dismiss(animated: true, completion: nil)
 
         }
-
 }
 
 extension AddDogViewController: UITableViewDelegate, UITableViewDataSource, InputTextFieldCellDelegate, InputTextViewCellDelegate, InputPickerDelegate, FavouriteCellDelegate {
@@ -220,15 +214,16 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         let fieldCell = tableView.dequeueReusableCell(withIdentifier: UserInputCell.identifier) as! UserInputCell
         if indexPath.row == 0 {
             fieldCell.textField.tag = indexPath.row
-            fieldCell.textField.placeholder = "名前"
-
+            fieldCell.textField.attributedPlaceholder = NSAttributedString(string: "名前",
+                                                                 attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
             fieldCell.delegate = self
  //           newName = textFieldArray[indexPath.row]
 
         } else {
             fieldCell.textField.tag = indexPath.row
             print("taags is:\(fieldCell.textField.tag)")
-            fieldCell.textField.placeholder = "犬種"
+            fieldCell.textField.attributedPlaceholder = NSAttributedString(string: "犬種",
+                                                                 attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
             fieldCell.delegate = self
         }
         return fieldCell
@@ -324,9 +319,4 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         } else {return}
     
     }
-    
-
-    
-    
-
 }

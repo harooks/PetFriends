@@ -18,6 +18,13 @@ struct AddedDogStruct {
 //    var imageUrl: String
 }
 
+struct MyDogStruct {
+    var name: String
+    var breed: String
+    var gender: Bool
+    var bio: String
+}
+
 
 class AddedDog//: NSObject
 {

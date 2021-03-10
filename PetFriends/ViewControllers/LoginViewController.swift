@@ -26,21 +26,17 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.barTintColor = design.themeColor
         navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.tintColor = design.subColor
+ //       navigationController?.navigationBar.tintColor = design.subColor
         
-//        emailTextField.borderStyle = .none
-        emailTextField.layer.cornerRadius = 10
-        emailTextField.layer.borderWidth = 1.5
-        emailTextField.layer.masksToBounds = true
-        emailTextField.layer.borderColor = design.subColor.cgColor
-        emailTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: emailTextField.frame.height))
-        emailTextField.leftViewMode = .always
-                
-        passwordTextField.layer.cornerRadius = 10
-        passwordTextField.layer.borderWidth = 1.5
-        passwordTextField.layer.borderColor = design.subColor.cgColor
-        passwordTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: passwordTextField.frame.height))
-        passwordTextField.leftViewMode = .always
+
+        design.textFieldDesign(textField: emailTextField)
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
+                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        
+        design.textFieldDesign(textField: passwordTextField)
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+
         
         loginButton.layer.cornerRadius = 10
         
@@ -88,7 +84,7 @@ class LoginViewController: UIViewController {
     
     func transitionToHome(){
             
-        let homevc = storyboard?.instantiateViewController(identifier: "HomeVC") as? HomeViewController
+        let homevc = storyboard?.instantiateViewController(identifier: "TabVC") as? UITabBarController
         view.window?.rootViewController = homevc
         view.window?.makeKeyAndVisible()
     }

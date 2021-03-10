@@ -18,6 +18,7 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDa
 
     @IBOutlet weak var genderPicker: UIPickerView!
     var genderChoiceArray = [String]()
+
     
     static let identifier = "pickerCell"
     
@@ -27,6 +28,7 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDa
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        genderPicker.setValue(UIColor.black, forKey: "textColor")
         genderPicker.delegate = self
         genderPicker.dataSource = self
     }
@@ -50,8 +52,13 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDa
         
  //       self.delegate.pickerView(pickerView, titleForRow: row, forComponent: 0)
         genderChoiceArray = ["オス", "メス"]
+        let myTitle = NSAttributedString(string: genderChoiceArray[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         return genderChoiceArray[row]
     }
+    
+//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+//        return NSAttributedString(string: genderChoiceArray[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+//    }
 
     
     var delegate: InputPickerDelegate! = nil

@@ -18,30 +18,28 @@ class Design: UIColor {
         view.layer.cornerRadius = 10
         view.layer.borderWidth = 1
     }
+    
+    func textFieldDesign(textField: UITextField) {
+        textField.layer.cornerRadius = 10
+        textField.layer.borderWidth = 1.5
+        textField.layer.borderColor = subColor.cgColor
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
+        textField.leftViewMode = .always
+    }
+    
+    func textViewDesign(textView: UITextView) {
+        textView.layer.cornerRadius = 10
+        textView.layer.borderWidth = 1.5
+        textView.layer.borderColor = subColor.cgColor
+
+    }
+    
+    func ViewDesign(view: UIView) {
+        view.layer.cornerRadius = 10
+        view.layer.borderWidth = 1.5
+        view.layer.borderColor = subColor.cgColor
+    }
 
 
-//    func addLayerToShadow1() -> UIView{
-//        let shadow = UIView()
-//        let shadowLayer = CALayer()
-//
-//        let shadowPath = UIBezierPath(roundedRect: shadow.bounds, cornerRadius: 10)
-//        shadowLayer.shadowPath = shadowPath.cgPath
-//        shadowLayer.shadowColor = UIColor(red: 0.741, green: 0.957, blue: 0.478, alpha: 0.4).cgColor
-//        shadowLayer.shadowOpacity = 1
-//        shadowLayer.shadowRadius = 3
-//        shadowLayer.shadowOffset = CGSize(width: -3, height: -3)
-//        shadowLayer.bounds = shadow.bounds
-//        shadowLayer.position = shadow.center
-//        shadow.layer.addSublayer(shadowLayer) //returns void
-//        //adds shadowloayer to shadow
-//        return shadow
-//    }
-//
-//    func dropShadow1(view: UIView) {
-//        let layeredShadow = addLayerToShadow1()
-//        layeredShadow.frame = view.frame
-//        layeredShadow.clipsToBounds = false
-//        view.addSubview(layeredShadow)
-//    }
 
 }

@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     
     var design = Design()
+    let dogFirebase = DogFirebase()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,19 +63,14 @@ class LoginViewController: UIViewController {
               let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
               let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
               //Signin the user
-                  Auth.auth().signIn(withEmail: email, password: password) {(result, error) in
-                      
-                      if error != nil {
-                          //couldn't login
-                          self.showError(_message: "メールかパスワードが違います")
-                      } else {
-                          
-                      //go to home screen
-                      self.transitionToHome()
-                      }
-                  }
+                dogFirebase.login(email: email, password: password)
 
-              }
+                          
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                      self.transitionToHome()
+                        }
+                        
+                      }
     }
     
     func showError(_message:String) {

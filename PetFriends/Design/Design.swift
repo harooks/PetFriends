@@ -14,6 +14,9 @@ class Design: UIColor {
     
     let subColor = UIColor(red: 66/255, green: 105/255, blue: 60/255, alpha: 1.0)
     
+    let gray =  UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1.0)
+    
+    
     var cornerRadius:(UIView) -> () = { view in
         view.layer.cornerRadius = 10
         view.layer.borderWidth = 1

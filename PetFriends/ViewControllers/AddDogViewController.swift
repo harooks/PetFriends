@@ -33,6 +33,7 @@ class AddDogViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.barTintColor = design.themeColor
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = design.subColor
+
         
         dogImageView.layer.cornerRadius = 20
         dogImageView.clipsToBounds = true

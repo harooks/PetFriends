@@ -56,6 +56,10 @@ class DogFirebase {
                         let ref = self.db.collection("users").document(result!.user.uid).collection("registeredDogs")
                         let id = ref.document().documentID
                         self.saveData.setValue(id, forKey: "dogId")
+                        
+                        self.db.collection("users").document(result!.user.uid).setData(["id" : id])
+                        
+                        
                         let someData = [
                             "name": myDog.name,
                             "breed": myDog.breed,
@@ -75,7 +79,6 @@ class DogFirebase {
         }
     }
 }
-    
 
    
 
@@ -257,6 +260,30 @@ class DogFirebase {
         }
     }
     
+    
+    func login(email: String, password: String) {
+        
+        Auth.auth().signIn(withEmail: email, password: password) {(result, error) in
+            
+            if error != nil {
+                //couldn't login
+//                showError(_message: "メールかパスワードが違います")
+            } else {
+
+                self.db.collection("users").document(result!.user.uid).getDocument {(document, err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        let id = document?.get("id")
+                        self.saveData.setValue(id, forKey: "dogId")
+                        print("login saved id is \(id)")
+                    }
+                }
+
+            }
+        }
+    }
+    
     func getSavedDogData (completion: @escaping ([DogModel]) -> ()) {
         
         uidString = String(currentUser!.uid)
@@ -279,6 +306,7 @@ class DogFirebase {
     
     func getRegisteredDogData (completion: @escaping (RegisteredDogModel) -> ()) {
         let myDogId = saveData.object(forKey: "dogId") as! String
+        
         uidString = String(currentUser!.uid)
         db.collection("users").document(uidString).collection("registeredDogs").document(myDogId).getDocument { (document, error) in
             if let document = document, document.exists {

@@ -154,6 +154,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // ここ時間じゃなくす
+            
             self.transitionToHome()
         }
     }

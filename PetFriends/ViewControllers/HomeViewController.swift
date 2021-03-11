@@ -26,7 +26,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
   
     override func viewWillAppear(_ animated: Bool) {
-        //モデルから Firebase のデータが入った配列を取得
+        
+        tabBarItem!.setTitleTextAttributes([ .foregroundColor : design.gray], for: .normal)
+        tabBarItem!.setTitleTextAttributes([ .foregroundColor : design.subColor], for: .selected)
+        UITabBar.appearance().tintColor = design.subColor
         
         dogFirebase.getSavedDogData { (savedDogArray) in
             self.dogArray = savedDogArray
@@ -37,10 +40,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.navigationBar.barTintColor = design.themeColor
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.tintColor = design.subColor
+
         
         searchBar.searchTextField.backgroundColor = .white
         

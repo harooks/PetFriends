@@ -20,11 +20,16 @@ class MyDogViewController: UIViewController {
     var myDogBio = String()
     var myDogId = String()
     var myDogImageUrl = String()
-    let saveData = UserDefaults.standard
+    
+//    let saveData = UserDefaults.standard
+    
     var myDog = RegisteredDogModel(dic: ["id": String.self])
+    var design = Design()
     
     
     override func viewWillAppear(_ animated: Bool) {
+        tabBarItem!.setTitleTextAttributes([ .foregroundColor : design.gray], for: .normal)
+        tabBarItem!.setTitleTextAttributes([ .foregroundColor : design.subColor], for: .selected)
         
             dogFirebase.getRegisteredDogData { (dog) in
             self.myDog = dog
@@ -52,14 +57,20 @@ class MyDogViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        navigationController?.navigationBar.barTintColor = design.themeColor
+//        navigationController?.navigationBar.shadowImage = UIImage()
+//        
+//        navigationController?.navigationBar.tintColor = design.subColor
+//        
+
+
+       
         dogImageView.layer.cornerRadius = 20
         dogImageView.clipsToBounds = true
-print("dog image corner radius is \(dogImageView.layer.cornerRadius)")
 
         table.register(UserInputCell.nib(), forCellReuseIdentifier: UserInputCell.identifier)
         table.register(TextViewTableViewCell.nib(), forCellReuseIdentifier: TextViewTableViewCell.identifier)
         table.register(PickerTableViewCell.nib(), forCellReuseIdentifier: PickerTableViewCell.identifier)
-        table.register(FavouriteTableViewCell.nib(), forCellReuseIdentifier: FavouriteTableViewCell.identifier)
         table.register(ButtonCell.nib(), forCellReuseIdentifier: ButtonCell.identifier)
         table.delegate = self
         table.dataSource = self

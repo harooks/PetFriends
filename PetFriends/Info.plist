@@ -15,11 +15,19 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>アプリ内で写真を撮り、保存するため</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>アルバムの中の写真をアプリで保存するため</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Rubik.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -45,14 +53,6 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Rubik.ttf</string>
-	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>アプリ内で写真を撮り、保存するため</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>アルバムの中の写真をアプリで保存するため</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

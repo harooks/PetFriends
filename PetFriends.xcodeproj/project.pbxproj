@@ -10,6 +10,7 @@
 		4B8F93BBDDDCD84E700FB1B8 /* Pods_PetFriends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828A969ECA74F39BC971701F /* Pods_PetFriends.framework */; };
 		8D2318A9F569195481977460 /* Pods_PetFriendsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDDBB3E951F78A5ADA0A741 /* Pods_PetFriendsTests.framework */; };
 		F2AC10DC94AEBCF5E003E346 /* Pods_PetFriends_PetFriendsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1545E61FF8992C34D49E4CE7 /* Pods_PetFriends_PetFriendsUITests.framework */; };
+		F52CE39E25FA7845004D2928 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52CE39D25FA7845004D2928 /* Error.swift */; };
 		F52E2C5B25EBD2AA00552BD4 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52E2C5925EBD2AA00552BD4 /* ButtonCell.swift */; };
 		F52E2C5C25EBD2AA00552BD4 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52E2C5A25EBD2AA00552BD4 /* ButtonCell.xib */; };
 		F539B00825E74A3500AED4E9 /* AddedDog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539B00725E74A3500AED4E9 /* AddedDog.swift */; };
@@ -71,6 +72,7 @@
 		99A0101AE61672F0AEE0C2E2 /* Pods-PetFriendsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetFriendsTests.release.xcconfig"; path = "Target Support Files/Pods-PetFriendsTests/Pods-PetFriendsTests.release.xcconfig"; sourceTree = "<group>"; };
 		CBDDBB3E951F78A5ADA0A741 /* Pods_PetFriendsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetFriendsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5367E907367EF2B39221FDB /* Pods-PetFriendsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetFriendsTests.debug.xcconfig"; path = "Target Support Files/Pods-PetFriendsTests/Pods-PetFriendsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F52CE39D25FA7845004D2928 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		F52E2C5925EBD2AA00552BD4 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		F52E2C5A25EBD2AA00552BD4 /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		F539B00725E74A3500AED4E9 /* AddedDog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedDog.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				F5C40F6225E4E33700B5D3D5 /* LaunchScreen.storyboard */,
 				F5C40F6525E4E33700B5D3D5 /* Info.plist */,
 				F5D3187025E604970017064C /* GoogleService-Info.plist */,
+				F52CE39D25FA7845004D2928 /* Error.swift */,
 			);
 			path = PetFriends;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				F5BFD49225EF4DEE002A30DA /* EditDogViewController.swift in Sources */,
 				F52E2C5B25EBD2AA00552BD4 /* ButtonCell.swift in Sources */,
 				F539B01025E762DC00AED4E9 /* DogFirebase.swift in Sources */,
+				F52CE39E25FA7845004D2928 /* Error.swift in Sources */,
 				F582598025EBC95700C6B35A /* TextViewTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

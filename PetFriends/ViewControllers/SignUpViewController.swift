@@ -27,6 +27,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     var design = Design()
+
     let genderChoiceArray = ["オス", "メス"]
     
     override func viewDidLoad() {
@@ -77,6 +78,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    
+    
     @IBAction func cameraButtonTapped(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             //カメラを起動
@@ -123,6 +126,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func signUpTapped(_ sender: Any) {
         let errorMessage = validateFields()
+        
+        
         
         if errorMessage != nil {
             showError(_message: errorMessage!)

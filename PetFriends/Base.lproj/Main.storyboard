@@ -227,7 +227,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" text="" placeholder="名前で検索" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWS-ot-Fmd">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="名前で検索" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWS-ot-Fmd">
                                 <rect key="frame" x="0.0" y="132" width="339.5" height="56"/>
                                 <color key="backgroundColor" red="0.62352941179999999" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -771,7 +771,7 @@
                                     <constraint firstItem="ues-vG-K8u" firstAttribute="leading" secondItem="NJy-Jn-puM" secondAttribute="leading" id="uTi-8O-oHQ"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6fz-oL-uaJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6fz-oL-uaJ">
                                 <rect key="frame" x="0.0" y="300" width="414" height="425"/>
                                 <color key="backgroundColor" red="0.62352941179999999" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.62352941179999999" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>

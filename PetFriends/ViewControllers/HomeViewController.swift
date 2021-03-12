@@ -43,6 +43,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         
         searchBar.searchTextField.backgroundColor = .white
+        searchBar.searchTextField.textColor = .black
         
       self.navigationController?.isNavigationBarHidden = true
         tableView.dataSource = self

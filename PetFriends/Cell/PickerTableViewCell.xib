@@ -16,17 +16,35 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjR-e6-6RE">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1ZJ-dp-Lx6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
-                        <color key="backgroundColor" red="0.62352941179999999" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
-                    </pickerView>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjR-e6-6RE">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
+                                <color key="backgroundColor" red="0.62352941179999999" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </pickerView>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zq4-UD-9Ub">
+                                <rect key="frame" x="20" y="78" width="285" height="1"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.41176470590000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.25882352939999997" green="0.41176470590000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="dTI-5r-aIh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zq4-UD-9Ub" secondAttribute="trailing" constant="15" id="8M0-OJ-410"/>
+                            <constraint firstItem="zq4-UD-9Ub" firstAttribute="leading" secondItem="1ZJ-dp-Lx6" secondAttribute="leading" constant="20" id="DNX-9x-QFO"/>
+                            <constraint firstAttribute="trailing" secondItem="zq4-UD-9Ub" secondAttribute="trailing" constant="20" id="pSj-JH-RPO"/>
+                        </constraints>
+                    </stackView>
                 </subviews>
                 <color key="backgroundColor" red="0.62352941179999999" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="GjR-e6-6RE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="C6M-ja-bzX"/>
-                    <constraint firstAttribute="trailing" secondItem="GjR-e6-6RE" secondAttribute="trailing" id="Hhx-pO-1Zn"/>
-                    <constraint firstAttribute="bottom" secondItem="GjR-e6-6RE" secondAttribute="bottom" id="hl7-aF-mQN"/>
-                    <constraint firstItem="GjR-e6-6RE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="i2b-1a-ekC"/>
+                    <constraint firstItem="1ZJ-dp-Lx6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="7Pb-ix-A8O"/>
+                    <constraint firstItem="1ZJ-dp-Lx6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7yU-xT-BVL"/>
+                    <constraint firstAttribute="trailing" secondItem="1ZJ-dp-Lx6" secondAttribute="trailing" id="Fzw-u0-yrB"/>
+                    <constraint firstAttribute="bottom" secondItem="1ZJ-dp-Lx6" secondAttribute="bottom" id="aUe-Uc-4MT"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

@@ -17,20 +17,49 @@ class DogFirebase {
     let currentUser = Auth.auth().currentUser
     var uidString = String()
     let saveData = UserDefaults.standard
+    var progress = Progress(totalUnitCount: 3)
+    var timer:Timer!
+    var design = Design()
+    var transition = Transition()
+
+   
     
+    func startTimer(pv: UIProgressView, vc: UIViewController) {
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+            guard self.progress.isFinished == false else {
+                timer.invalidate()
+                self.transition.transitionToHome(vc: vc)
+                
+                print("timer finished")
+                return
+            }
+            
+            self.progress.completedUnitCount += 1
+            let progressFloat = Float(self.progress.fractionCompleted)
+            pv.setProgress(progressFloat, animated: true)
+            pv.progress = progressFloat
+        }
+    }
     
-    func createNewAccount(email: String, password: String, myDog: MyDogStruct, view: UIImageView) {
+
+    
+    func createNewAccount(email: String, password: String, myDog: MyDogStruct, view: UIImageView, progressView: UIProgressView, errorMessage: UILabel, vc: UIViewController) {
         
         Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
             
             if err != nil {
-                
+                errorMessage.text = "パスワードが短いです"
+                errorMessage.textColor = .red
                 print("error creating user: \(err)")
             } else {
                 
                 guard let imageData = view.image?.jpegData(compressionQuality: 0.75) else {
+                    errorMessage.text = "画像がありません"
+                    errorMessage.textColor = .red
                     print("not working")
                     return }
+                                
                 
                 let randomID = UUID.init().uuidString
                 let uploadRef = Storage.storage().reference(withPath: "dog/\(randomID).jpeg")
@@ -70,6 +99,9 @@ class DogFirebase {
                         ] as [String : Any]
                         
                         ref.document(id).setData(someData, merge: true)
+                        self.startTimer(pv: progressView, vc: vc)
+                        errorMessage.text = "ロード中..."
+                        errorMessage.textColor = self.design.subColor
                         
                         print("register Dog ran without error?")
     
@@ -118,7 +150,7 @@ class DogFirebase {
     }
     
     
-    func updateMyDogImage(id: String, name: String, breed: String, bio: String, gender: Bool, view: UIImageView) {
+    func updateMyDogImage(id: String, name: String, breed: String, bio: String, gender: Bool, view: UIImageView, vc: UIViewController) {
         
         guard let imageData = view.image?.jpegData(compressionQuality: 0.75) else {
             print("not working")
@@ -157,18 +189,19 @@ class DogFirebase {
                 ] as [String : Any]
                 
                 ref.updateData(someData)
-                print("path to this data is \(ref.path)")
+                
             }
         }
     }
     
     
     
-    func uploadImage(addedDog: AddedDogStruct, view: UIImageView) {
+    func uploadImage(addedDog: AddedDogStruct, view: UIImageView, vc: UIViewController) {
 
         guard let imageData = view.image?.jpegData(compressionQuality: 0.75) else {
             print("not working")
             return }
+        
         
         let randomID = UUID.init().uuidString
         let uploadRef = Storage.storage().reference(withPath: "dog/\(randomID).jpeg")
@@ -191,6 +224,7 @@ class DogFirebase {
                 
                 guard let urlString = url?.absoluteString else {return}
                 self.getDogData(dog: addedDog , imageUrl: urlString)
+                vc.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -217,7 +251,7 @@ class DogFirebase {
     
     
     
-    func updateImage(id: String, name: String, breed: String, bio: String, gender: Bool, fav: Bool, view: UIImageView) {
+    func updateImage(id: String, name: String, breed: String, bio: String, gender: Bool, fav: Bool, view: UIImageView, vc: UIViewController) {
         guard let imageData = view.image?.jpegData(compressionQuality: 0.75) else {
             print("not working")
             return}
@@ -255,31 +289,40 @@ class DogFirebase {
                 ] as [String : Any]
                 
                 ref.document(id).updateData(someData)
-
+                vc.navigationController?.popToRootViewController(animated: true)
             }
         }
     }
     
     
-    func login(email: String, password: String) {
+    func login(email: String, password: String, progressView: UIProgressView, errorMessage: UILabel, vc: UIViewController) {
         
         Auth.auth().signIn(withEmail: email, password: password) {(result, error) in
             
             if error != nil {
                 //couldn't login
-//                showError(_message: "メールかパスワードが違います")
+                errorMessage.text = "メールかパスワードが違います"
+                errorMessage.textColor = .red
+               
             } else {
-
+//
+                self.startTimer(pv: progressView, vc: vc)
+                errorMessage.text = "ロード中..."
+                errorMessage.textColor = self.design.subColor
+                
                 self.db.collection("users").document(result!.user.uid).getDocument {(document, err) in
                     if let err = err {
                         print("Error getting documents: \(err)")
+                        errorMessage.text = "エラーが起こりました"
+                        errorMessage.textColor = .red
                     } else {
                         let id = document?.get("id")
                         self.saveData.setValue(id, forKey: "dogId")
+                        
                         print("login saved id is \(id)")
+                       
                     }
                 }
-
             }
         }
     }

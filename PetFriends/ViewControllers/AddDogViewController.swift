@@ -45,20 +45,10 @@ class AddDogViewController: UIViewController, UITextFieldDelegate {
         table.delegate = self
         table.dataSource = self
         
+        
         keyboaredSetting()
     }
     
-    //UpperView を動かしたい
-//    @objc func panGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
-//        //移動量を取得する
-//        let move = gestureRecognizer.translation(in: self.view)
-//
-//        //y軸の移動量をviewの高さに加える
-//        self.upperView.frame.size.height += move.y
-//
-//        //移動量をリセットする
-//        gestureRecognizer.setTranslation(CGPoint.zero, in: self.view)
-//    }
     
     deinit {
            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -256,6 +246,8 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
  
         if indexPath.row == 5 {
             
+            let cell = ButtonCell()
+            
             if self.newName == "" {
                 let nameWarningAlert:UIAlertController = UIAlertController(title: "保存できません", message: "名前を記入してください", preferredStyle: .alert)
                 nameWarningAlert.addAction(UIAlertAction(
@@ -274,7 +266,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
                     handler: { action in
                         let dogFirebase = DogFirebase()
                         let newDog = AddedDogStruct(name: self.newName, breed: self.newBreed, gender: self.newGender, fav: self.newFav, bio: self.newOther)
-                        dogFirebase.uploadImage(addedDog: newDog, view: self.dogImageView)
+                        dogFirebase.uploadImage(addedDog: newDog, view: self.dogImageView, vc: self)
                     
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // ここ時間じゃなくす
             //                print("id is \(dogFirebase.id)") //works
@@ -301,12 +293,10 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
             handler: { action in
                 let dogFirebase = DogFirebase()
                 let newDog = AddedDogStruct(name: self.newName, breed: self.newBreed, gender: self.newGender, fav: self.newFav, bio: self.newOther)
-                dogFirebase.uploadImage(addedDog: newDog, view: self.dogImageView)
+
+                
+                dogFirebase.uploadImage(addedDog: newDog, view: self.dogImageView, vc: self)
             
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // ここ時間じゃなくす
-    //                print("id is \(dogFirebase.id)") //works
-                    self.dismiss(animated: true, completion: nil)
-                }
             }
         ))
             

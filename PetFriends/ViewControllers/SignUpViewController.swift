@@ -25,6 +25,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var LabelAndView: UIView!
     
+    @IBOutlet weak var signUpProgressView: UIProgressView!
+    
     
     var design = Design()
 
@@ -67,7 +69,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         design.textFieldDesign(textField: passwordTextField)
         passwordTextField.delegate = self
         passwordTextField.addTarget(self, action: #selector(onExitAction(sender:)), for: .editingDidEndOnExit)
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password (6文字以上)",
                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
     
         signupButton.layer.cornerRadius = 10
@@ -110,13 +112,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    func validateFields() -> String? {
+    func validateTextFields() -> String? {
         
-        if myDogBreedTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || myDogBreedTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            return "全て記入してください"
+        if myDogNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || myDogBreedTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            return "空白があります"
         } else {
         return nil
         }
+    }
+    
+    func validateImageView() -> String? {
+        if dogImageView.image == nil {
+            return "画像がありまてん"
+        } else {
+        return nil
+        }
+    
     }
     
     @objc func onExitAction(sender: Any) {
@@ -125,15 +136,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func signUpTapped(_ sender: Any) {
-        let errorMessage = validateFields()
         
+        let error = validateTextFields()
+        let imageError = validateImageView()
         
-        
-        if errorMessage != nil {
-            showError(_message: errorMessage!)
-        }
-        else {
+        if error != nil {
+            errorLabel.text = error
+            errorLabel.textColor = .red
+        } else {
             
+            if imageError != nil {
+                errorLabel.text = imageError
+                errorLabel.textColor = .red
+            } else {
+        
             let dogName = myDogNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let dogBreed = myDogBreedTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
@@ -154,26 +170,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
             let dogFirebase = DogFirebase()
 
-            dogFirebase.createNewAccount(email: email, password: password, myDog: myDog, view: dogImageView)
+            dogFirebase.createNewAccount(email: email, password: password, myDog: myDog, view: dogImageView, progressView: signUpProgressView, errorMessage: errorLabel, vc: self)
+            }
             
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // ここ時間じゃなくす
-            
-            self.transitionToHome()
-        }
-    }
-    
-    
-    func showError(_message:String) {
-        errorLabel.text = _message
-        errorLabel.alpha = 1
-    }
-    
-    func transitionToHome(){
-            let homevc = storyboard?.instantiateViewController(identifier: "TabVC") as? UITabBarController
-            view.window?.rootViewController = homevc
-            view.window?.makeKeyAndVisible()
     }
 
 }
@@ -201,15 +202,9 @@ extension SignUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let genderChoiceArray = ["オス", "メス"]
-//
-//        let myTitle = NSAttributedString(string: genderChoiceArray[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-//
         return genderChoiceArray[row]
     }
-//
-//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-//        return NSAttributedString(string: genderChoiceArray[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-//    }
+
     
 
 }

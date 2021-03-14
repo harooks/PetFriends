@@ -14,15 +14,18 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var errorLabel: UILabel!
-    
     @IBOutlet weak var loginButton: UIButton!
+    
+    @IBOutlet weak var loginProgressView: UIProgressView!
+    
+    @IBOutlet weak var loginErrorLabel: UILabel!
     
     var design = Design()
     let dogFirebase = DogFirebase()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.barTintColor = design.themeColor
@@ -57,26 +60,20 @@ class LoginViewController: UIViewController {
               
               if error != nil {
                   //エラ〜メッセージを表示
-                  errorLabel.text = error!
+                loginErrorLabel.text = error
+                loginErrorLabel.textColor = .red
               } else {
               //create cleaned version of data
               let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
               let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
               //Signin the user
-                dogFirebase.login(email: email, password: password)
+                dogFirebase.login(email: email, password: password, progressView: loginProgressView, errorMessage: loginErrorLabel, vc: self)
 
-                          
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                      self.transitionToHome()
-                        }
                         
                       }
     }
     
-    func showError(_message:String) {
-        errorLabel.text = _message
-        errorLabel.alpha = 1
-    }
+
     
     func transitionToHome(){
             

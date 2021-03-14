@@ -27,16 +27,30 @@
                         <color key="textColor" red="0.25882352939999997" green="0.41176470590000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tSo-Eq-zDq">
+                        <rect key="frame" x="20" y="64" width="280" height="1"/>
+                        <color key="backgroundColor" red="0.25882352939999997" green="0.41176470590000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.25882352939999997" green="0.41176470590000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Vhf-Hn-xPG"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" red="0.62352941179999999" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="tSo-Eq-zDq" secondAttribute="bottom" id="4ym-ui-UX1"/>
                     <constraint firstItem="0NZ-2s-jII" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="50" id="FvR-Ee-XID"/>
                     <constraint firstItem="0NZ-2s-jII" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="HPu-xd-MyP"/>
+                    <constraint firstItem="tSo-Eq-zDq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Mgw-17-ZYp"/>
+                    <constraint firstAttribute="trailing" secondItem="tSo-Eq-zDq" secondAttribute="trailing" constant="20" id="PRh-cm-IZV"/>
                     <constraint firstAttribute="trailing" secondItem="0NZ-2s-jII" secondAttribute="trailing" constant="50" id="kek-Ts-XgY"/>
                     <constraint firstItem="0NZ-2s-jII" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kwX-Eu-EVn"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="saveLabel" destination="0NZ-2s-jII" id="S5H-4M-UxE"/>
+            </connections>
             <point key="canvasLocation" x="137.68115942028987" y="56.584821428571423"/>
         </tableViewCell>
     </objects>

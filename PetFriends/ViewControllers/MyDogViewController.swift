@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyDogViewController: UIViewController {
+class MyDogViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var dogImageView: UIImageView!
     
@@ -57,12 +57,6 @@ class MyDogViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationController?.navigationBar.barTintColor = design.themeColor
-//        navigationController?.navigationBar.shadowImage = UIImage()
-//        
-//        navigationController?.navigationBar.tintColor = design.subColor
-//        
-
 
        
         dogImageView.layer.cornerRadius = 20
@@ -80,6 +74,12 @@ class MyDogViewController: UIViewController {
         print("my dog bio is \(myDogBio)")
         
     }
+    
+    deinit {
+           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+       }
     
     
 
@@ -130,7 +130,7 @@ extension MyDogViewController {
         }
 
         if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
-            view.frame.origin.y = -keyboardRect.height
+            view.frame.origin.y = -keyboardRect.height + 120
         } else {
             view.frame.origin.y = 0
         }
@@ -277,14 +277,13 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
             title: "OK",
             style: .default,
             handler: { action in
-//                let updatedMyDog = MyDogStruct(name: self.myDogName, breed: self.myDogBreed, gender: self.myDogGender, bio: self.myDogBio)
                 
                 print("id id is \(self.myDogId)")
                 print("image url url is \(self.myDogImageUrl)")
                 
                 self.dogFirebase.updatedMyDogData(id: self.myDogId, name: self.myDogName, breed: self.myDogBreed, bio: self.myDogBio, gender: self.myDogGender, imageUrl: self.myDogImageUrl)
 
-                self.dogFirebase.updateMyDogImage(id: self.myDogId, name: self.myDogName, breed: self.myDogBreed, bio: self.myDogBio, gender: self.myDogGender, view: self.dogImageView)
+                self.dogFirebase.updateMyDogImage(id: self.myDogId, name: self.myDogName, breed: self.myDogBreed, bio: self.myDogBio, gender: self.myDogGender, view: self.dogImageView, vc: self)
 
             }
         ))

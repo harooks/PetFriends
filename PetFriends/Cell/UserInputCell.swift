@@ -16,6 +16,7 @@ class UserInputCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     
     var textArray = [String]()
+    var design = Design()
     
     static let identifier = "FieldCell"
     
@@ -29,6 +30,7 @@ class UserInputCell: UITableViewCell, UITextFieldDelegate {
         super.awakeFromNib()
         textField.delegate = self
         textArray.append(textField.text!)
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

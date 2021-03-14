@@ -26,6 +26,7 @@ class EditDogViewController: UIViewController {
     var documentId = String()
     var textFieldArray = [String]()
     
+
     var design = Design()
      
     override func viewDidLoad() {
@@ -57,22 +58,29 @@ class EditDogViewController: UIViewController {
         table.register(ButtonCell.nib(), forCellReuseIdentifier: ButtonCell.identifier)
         table.delegate = self
         table.dataSource = self
-        keyboaredSetting()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+
         setSwipeBack()
     }
     
-    deinit {
-           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-       }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+           // if keyboard size is not available for some reason, dont do anything
+           return
+        }
+      
+      // move the root view up by the distance of keyboard height
+      self.view.frame.origin.y = 0 - keyboardSize.height
+    }
     
-    
+
     func setSwipeBack() {
         let target = self.navigationController?.value(forKey: "_cachedInteractionController")
         let recognizer = UIPanGestureRecognizer(target: target, action: Selector(("handleNavigationTransition:")))
         self.view.addGestureRecognizer(recognizer)
     }
+    
     
     @IBAction func openCameraTapped(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -101,7 +109,6 @@ class EditDogViewController: UIViewController {
          } else {
              print("error using camera")
          }
-        
     }
     
     @objc func changeSwitch(_ sender: UISwitch) {
@@ -115,34 +122,10 @@ class EditDogViewController: UIViewController {
         navigationController?.popToRootViewController(animated: true)
     
     }
-   
-
-}
-
-extension EditDogViewController {
-    //keyboard setting
     
- 
-    func keyboaredSetting() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil);
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil);
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil);
-    }
-
-    @objc func keyboardWillChange(notification: Notification) {
-
-        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else{
-            return
-        }
-
-        if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
-            view.frame.origin.y = -keyboardRect.height
-        } else {
-            view.frame.origin.y = 0
-        }
-    }
 
 }
+
 
 extension EditDogViewController: UITableViewDelegate, UITableViewDataSource, InputTextFieldCellDelegate, InputTextViewCellDelegate, InputPickerDelegate, FavouriteCellDelegate {
     
@@ -160,7 +143,6 @@ extension EditDogViewController: UITableViewDelegate, UITableViewDataSource, Inp
     
     
     func textViewDidEndEditing(cell: TextViewTableViewCell, value: String) {
-   //     let row = 3
         newOther = value
     }
     
@@ -286,11 +268,8 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
                     let dogFirebase = DogFirebase()
                     dogFirebase.updateData(id: self.documentId, name: self.newName, breed: self.newBreed, bio: self.newOther, gender: self.newGender, fav: self.newFav, imageUrl: self.newImageUrl)
                     
-                    dogFirebase.updateImage(id: self.documentId, name: self.newName, breed: self.newBreed, bio: self.newOther, gender: self.newGender, fav: self.newFav, view: self.dogImageView)
+                    dogFirebase.updateImage(id: self.documentId, name: self.newName, breed: self.newBreed, bio: self.newOther, gender: self.newGender, fav: self.newFav, view: self.dogImageView, vc: self)
 
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        self.navigationController?.popToRootViewController(animated: true)
-                    }
                 }
             ))
             

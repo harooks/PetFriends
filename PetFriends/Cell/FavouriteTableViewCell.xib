@@ -29,10 +29,20 @@
                             <action selector="switchChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="cfm-ck-8HT"/>
                         </connections>
                     </switch>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4X3-vk-RP0">
+                        <rect key="frame" x="20" y="43" width="280" height="1"/>
+                        <color key="backgroundColor" red="0.25882352939999997" green="0.41176470590000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="m2g-38-ErE"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" red="0.62352941179999999" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstItem="4X3-vk-RP0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="0qI-rU-O2k"/>
+                    <constraint firstAttribute="trailing" secondItem="4X3-vk-RP0" secondAttribute="trailing" constant="20" id="ETv-nt-1fg"/>
                     <constraint firstItem="ze8-TM-Hd6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="G63-ZO-a1c"/>
+                    <constraint firstAttribute="bottom" secondItem="4X3-vk-RP0" secondAttribute="bottom" id="LSV-pj-tSY"/>
                     <constraint firstItem="ze8-TM-Hd6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LuM-5w-ZlL"/>
                     <constraint firstItem="Ko2-h2-YkP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jQ8-DP-Wpu"/>
                     <constraint firstAttribute="trailing" secondItem="Ko2-h2-YkP" secondAttribute="trailing" constant="20" id="vI9-SJ-X2I"/>

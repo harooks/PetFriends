@@ -20,9 +20,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var design = Design()
     
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var heartButton: UIButton!
-    
     @IBOutlet weak var tableView: UITableView!
   
     override func viewWillAppear(_ animated: Bool) {
@@ -41,10 +39,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         searchBar.searchTextField.backgroundColor = .white
         searchBar.searchTextField.textColor = .black
-        
       self.navigationController?.isNavigationBarHidden = true
         tableView.dataSource = self
         tableView.delegate = self
